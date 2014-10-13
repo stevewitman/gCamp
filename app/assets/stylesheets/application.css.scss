@@ -21,8 +21,30 @@ body {
 .pics {
   width: 100%;
   margin-bottom: 30px;
+  border-radius: 4px;  
 }
 
 .panel {
   min-height: 200px;
+  border-color: black;
+}
+
+.panel-default > .panel-heading {
+  background-color: #AED7E9;
+  border-color: black;
+}
+
+/* Gradient transparent - color - transparent */
+
+hr.style-two {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+footer {
+  margin: 35px;
 }
