@@ -3,6 +3,7 @@
 
 body {
   background-color: #EEEEEE;
+
 }
 
 .navbar {
@@ -21,7 +22,7 @@ body {
 .pics {
   width: 100%;
   margin-bottom: 30px;
-  border-radius: 4px;  
+  border-radius: 4px;
 }
 
 .panel {
@@ -47,4 +48,12 @@ hr.style-two {
 
 footer {
   margin: 35px;
+
+}
+
+.vertical-center {
+  height:100%;
+  width:100%;
+
+  text-align: center;  /* align the inline(-block) elements horizontally */
 }
