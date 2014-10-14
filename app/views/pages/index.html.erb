@@ -58,5 +58,19 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <!-- Quotes -->
+    <% quotes = [
+                  ["\"Failure is not an option, Everyone has to Succeed\"", "Arnold Scwarzenegger"],
+                  ["\"Your time is limited, so don\'t waste it living someone else's life.\"", "Steve Jobs"],
+                  ["\"Better Ingredients, Better Pizza\"", "Papa John"]
+                ]
+    %>
+    <% quotes.each do |element| %>
+      <p class="quote"><%= element[0] %> - <%= element[1] %></p>
+    <% end %>
+
+  </div>
+
 
 </div>
