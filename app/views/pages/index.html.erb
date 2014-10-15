@@ -58,13 +58,15 @@
       </div>
     </div>
   </div>
+
+  <!-- Quotes -->
   <div class="container">
-    <!-- Quotes -->
     <% @quotes.each do |quote| %>
-     <p>"<%= quote.text %>" - <%= quote.author %></p>
+    <blockquote>
+      <p>"<%= quote.text %>"</p>
+      <footer><%= quote.author %></footer>
+    </blockquote>
     <% end %>
-
   </div>
-
 
 </div>

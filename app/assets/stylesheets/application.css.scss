@@ -3,19 +3,10 @@
 
 body {
   background-color: #EEEEEE;
-
-}
-
-.navbar {
-  background-color: orange;
 }
 
 .gschool-main {
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #FFFFFF;
-  padding: 80px 10px 10px 10px;
+  padding-top: 80px;
 }
 
 
@@ -25,15 +16,15 @@ body {
   border-radius: 4px;
 }
 
-.panel {
-  min-height: 200px;
-  border-color: black;
-}
+// .panel {
+//   min-height: 200px;
+//   border-color: black;
+// }
 
-.panel-default > .panel-heading {
-  background-color: #AED7E9;
-  border-color: black;
-}
+// .panel-default > .panel-heading {
+//   background-color: #AED7E9;
+//   border-color: black;
+// }
 
 /* Gradient transparent - color - transparent */
 
@@ -47,8 +38,7 @@ hr.style-two {
 }
 
 footer {
-  margin: 35px;
-
+  margin-bottom: 20px;
 }
 
 .vertical-center {
@@ -56,4 +46,8 @@ footer {
   width:100%;
 
   text-align: center;  /* align the inline(-block) elements horizontally */
+}
+
+.span:active {
+    background: green;
 }

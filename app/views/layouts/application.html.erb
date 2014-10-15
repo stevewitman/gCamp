@@ -42,15 +42,18 @@
 
 
     <div class="gschool-main">
+
       <!-- Main content -->
       <%= yield %>
       <hr class="style-two">
+
       <!-- Footer -->
+      <div class="container">
       <footer>
         <%= link_to("About", about_path) %> | <%= link_to("Terms", terms_path) %> | <%= link_to("FAQ", faq_path) %>
       </footer>
-    </div> <!-- /container -->
-
+    </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
