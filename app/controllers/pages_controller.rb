@@ -1,11 +1,22 @@
 class PagesController < ApplicationController
 
   def index
-    @quotes = [
-                ["\"Failure is not an option, Everyone has to Succeed\"", "Arnold Scwarzenegger"],
-                ["\"Your time is limited, so don\'t waste it living someone else's life.\"", "Steve Jobs"],
-                ["\"Better Ingredients, Better Pizza\"", "Papa John"]
-              ]
+
+
+    quote1 = Quote.new
+    quote1.text = "Failure is not an option, Everyone has to Succeed"
+    quote1.author = "Arnold Scwarzenegger"
+
+    quote2 = Quote.new
+    quote2.text = "Your time is limited, so don\'t waste it living someone else's life."
+    quote2.author = "Steve Jobs"
+
+    quote3 = Quote.new
+    quote3.text = "Better Ingredients, Better Pizza"
+    quote3.author = "Papa John"
+
+    @quotes = [quote1, quote2, quote3]
+
   end
 
 end

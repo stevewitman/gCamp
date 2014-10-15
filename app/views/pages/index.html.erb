@@ -60,9 +60,8 @@
   </div>
   <div class="container">
     <!-- Quotes -->
-
-    <% @quotes.each do |element| %>
-      <p class="quote"><%= element[0] %> - <%= element[1] %></p>
+    <% @quotes.each do |quote| %>
+     <p>"<%= quote.text %>" - <%= quote.author %></p>
     <% end %>
 
   </div>
