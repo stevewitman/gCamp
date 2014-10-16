@@ -9,25 +9,13 @@ body {
   padding-top: 80px;
 }
 
-
 .pics {
   width: 100%;
   margin-bottom: 30px;
   border-radius: 4px;
 }
 
-// .panel {
-//   min-height: 200px;
-//   border-color: black;
-// }
-
-// .panel-default > .panel-heading {
-//   background-color: #AED7E9;
-//   border-color: black;
-// }
-
 /* Gradient transparent - color - transparent */
-
 hr.style-two {
   border: 0;
   height: 1px;
@@ -41,13 +29,9 @@ footer {
   margin-bottom: 20px;
 }
 
+// ask Aaron about this class ....
 .vertical-center {
   height:100%;
   width:100%;
-
   text-align: center;  /* align the inline(-block) elements horizontally */
-}
-
-.span:active {
-    background: green;
 }
