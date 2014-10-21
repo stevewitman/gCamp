@@ -15,6 +15,11 @@
     <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
+  <div class="field">
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date %>
+  </div>
+
   <br />
   <% unless current_page?(new_task_path) %>
   <div class="field">
