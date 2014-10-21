@@ -1,6 +1,3 @@
-
-
-
 <%= form_for @task, :html => {:class => 'form-horizontal'} do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
@@ -13,18 +10,19 @@
       </ul>
     </div>
   <% end %>
-
-
+  <br />
   <div class="field">
     <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
-
+  <br />
+  <% unless current_page?(new_task_path) %>
   <div class="field">
     <%= f.check_box :complete %>
     <%= f.label :complete %>
   </div>
-
+  <% end %>
+  <br />
   <div class="actions">
     <%= f.submit %>
   </div>
