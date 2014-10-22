@@ -14,7 +14,9 @@
 
   <!-- Description -->
   <div class="form-group">
-    <%= f.label :description, :class => 'col-sm-1 control-label' %>
+    <div class="col-sm-1">
+      <%= f.label :description, :class => 'control-label' %>
+    </div>
     <div class="col-sm-5">
       <%= f.text_field :description, :class => "form-control" %>
     </div>
@@ -22,7 +24,9 @@
 
   <!-- Due date -->
   <div class="form-group">
-    <%= f.label :due_date, :class => 'col-sm-1 control-label' %>
+    <div class="col-sm-1">
+      <%= f.label :due_date, :class => 'control-label' %>
+    </div>
     <div class="col-sm-5">
       <%= f.date_field :due_date, :class => "form-control" %>
     </div>
@@ -32,7 +36,9 @@
   <!-- Complete? -->
   <% unless current_page?(new_task_path) %>
     <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-11">
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-5">
         <%= f.check_box :complete %>
         <%= f.label :complete %>
       </div>
@@ -42,7 +48,9 @@
 
   <!-- Submit form button -->
   <div class="form-group">
-    <div class="col-sm-offset-1 col-sm-11">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-5">
       <!-- <div class="actions"> -->
         <%= f.submit nil, :class => 'btn btn-default btn-primary' %>
       <!-- </div> -->
