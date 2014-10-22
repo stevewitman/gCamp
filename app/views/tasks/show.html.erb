@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="container alert alert-success">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
 
 <p>
   <strong>Description:</strong>
