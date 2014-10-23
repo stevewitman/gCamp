@@ -1,6 +1,8 @@
   <div class="container">
-    <h1 class="page-header">
-      Tasks
+
+    <h1 class="page-header">Tasks
+      <%= link_to "All", tasks_path(sort: "all") %>
+      <%= link_to "Incomplete", tasks_path(sort: "incomplete") %>
       <%= link_to 'New Task', new_task_path, class: "btn btn-primary pull-right" %>
     </h1>
 
