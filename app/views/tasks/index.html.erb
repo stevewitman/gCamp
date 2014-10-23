@@ -1,18 +1,20 @@
   <div class="container">
-
-    <h1 class="page-header">Tasks
-      <%= link_to "All", tasks_path(sort: "all") %>
-      <%= link_to "Incomplete", tasks_path(sort: "incomplete") %>
-      <%= link_to 'New Task', new_task_path, class: "btn btn-primary pull-right" %>
-    </h1>
+    <div class="page-header">
+      <div class="pull-right text-muted">
+        <%= link_to_if((@ref == "incomplete"), "All", tasks_path(sort: "all")) %> |
+        <%= link_to_if((@ref == "all"), "Incomplete", tasks_path(sort: "incomplete")) %>&nbsp;&nbsp;&nbsp;
+        <%= link_to 'New Task', new_task_path, class: "btn btn-primary" %>
+      </div>
+      <h1>Tasks</h1>
+    </div>
 
     <table class="table">
       <thead>
         <tr>
-          <th>Description</th>
-          <th>Complete</th>
-          <th>Due</th>
-          <th></th>
+          <th width="50%">Description</th>
+          <th width="15%">Complete</th>
+          <th width="15%">Due</th>
+          <th width="20%"></th>
         </tr>
       </thead>
 
