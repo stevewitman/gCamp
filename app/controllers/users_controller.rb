@@ -1,22 +1,28 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
   end
+
   def new
-    @event = Event.new
+    @user = User.new
   end
 
   def create
-    @task = Event.new(event_params)
+    @user = User.new(user_params)
+    @user.save
+    redirect_to users_path, notice: 'User was sucessfully created'
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @event, class: 'alert alert-success' }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email)
+    end
 end

@@ -1,4 +1,9 @@
 <div class="container">
+  <% if notice %>
+    <div class="container alert alert-success">
+      <p id="notice"><%= notice %></p>
+    </div>
+  <% end %>
   <div class="page-header">
     <div class="pull-right text-muted">
       <%= link_to 'Create User', new_user_path, class: "btn btn-primary" %>
@@ -15,10 +20,12 @@
     </thead>
 
     <tbody>
+      <% @users.each do |user| %>
         <tr>
-          <td></td>
-          <td></td>
+        <td><%= user.first_name.capitalize + ' ' + user.last_name.capitalize %></td>
+          <td><%= mail_to(user.email) %></td>
         </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
