@@ -21,14 +21,7 @@
       <tbody>
         <% @tasks.each do |task| %>
           <tr>
-            <td>def index
-              @tasks = Task.where(complete: false)
-              @ref = "incomplete"
-              if params[:sort] == "all"
-                @tasks = Task.all
-                @ref = "all"
-              end
-            end</td>
+            <td><%= task.description %></td>
             <td><%= task.complete %></td>
             <td><%= task.due_date %></td>
             <td>
