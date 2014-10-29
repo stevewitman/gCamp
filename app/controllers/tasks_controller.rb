@@ -21,12 +21,13 @@ class TasksController < ApplicationController
   end
 
   def create
+
     @task = Task.new(task_params)
     @task.complete = false
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
-      render
+      render :new
     end
   end
 

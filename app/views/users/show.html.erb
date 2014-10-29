@@ -1,0 +1,26 @@
+<div class="container">
+  <% if notice %>
+    <div class="container alert alert-success">
+      <p id="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <div class="page-header">
+    <div class="pull-right">
+      <%= link_to 'Edit', new_user_path, class: "btn btn-primary" %>
+    </div>
+    <h1><%= @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h1>
+  </div>
+
+  <dl class="dl-horizontal">
+    <dt>First Name</dt>
+    <dd><%= @user.first_name %></dd>
+    <dt>Last Name</dt></strong>
+    <dd><%= @user.last_name %></dd>
+    <dt>Email</strong></dt>
+    <dd><%= mail_to(@user.email) %></dd>
+  </dl>
+  <br />
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+</div>
