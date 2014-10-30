@@ -6,7 +6,7 @@
   <% end %>
   <div class="page-header">
     <div class="pull-right">
-      <%= link_to 'Edit', new_user_path, class: "btn btn-primary" %>
+      <%= link_to 'Edit', edit_user_path, class: "btn btn-primary" %>
     </div>
     <h1><%= @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h1>
   </div>
@@ -14,9 +14,9 @@
   <dl class="dl-horizontal">
     <dt>First Name</dt>
     <dd><%= @user.first_name %></dd>
-    <dt>Last Name</dt></strong>
+    <dt>Last Name</dt>
     <dd><%= @user.last_name %></dd>
-    <dt>Email</strong></dt>
+    <dt>Email</dt>
     <dd><%= mail_to(@user.email) %></dd>
   </dl>
   <br />
