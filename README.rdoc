@@ -1,4 +1,4 @@
-== README
+== README ==
 
 Hosted on Heroku:  http://floating-ridge-6032.herokuapp.com/
 
