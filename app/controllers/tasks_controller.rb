@@ -21,7 +21,6 @@ class TasksController < ApplicationController
   end
 
   def create
-
     @task = Task.new(task_params)
     @task.complete = false
     if @task.save
@@ -41,7 +40,7 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+      redirect_to tasks_url, notice: 'Task was successfully destroyed.' #check on task_url *************************
     end
   end
 

@@ -1,0 +1,32 @@
+<%= form_for @project, :html => {:class => 'form-horizontal'} do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <br />
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :name, :class => 'control-label' %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+        <%= f.submit nil, :class => 'btn btn-default btn-primary' %>
+    </div>
+  </div>
+
+
+<% end %>

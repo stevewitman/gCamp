@@ -52,13 +52,11 @@
     </div>
     <div class="col-sm-4">
       <div class="well">
-        <%= link_to 'Destroy', @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <div class="text-center">
+          <%= link_to 'Destroy', @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
       </div>
     </div>
   <% end %>
-</div>
-
-
-
-
+  </div>
 <% end %>
