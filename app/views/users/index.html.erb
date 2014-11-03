@@ -23,7 +23,13 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= link_to (user.first_name.capitalize + ' ' + user.last_name.capitalize), user_path(user) %></td>
+
+          <% @full_name = "#{user.first_name} #{user.last_name}" %>
+          <% if @full_name == ' '%>
+            <% @full_name = '(none)' %>
+          <% end %>
+          <td><%= link_to @full_name, user_path(user) %></td>
+
           <td><%= mail_to(user.email) %></td>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
         </tr>
