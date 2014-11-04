@@ -40,9 +40,29 @@
 
   <div class="form-group">
     <div class="col-sm-2">
+      <%= f.label :password, :class => 'control-label' %>
     </div>
     <div class="col-sm-4">
-        <%= f.submit nil, :class => 'btn btn-default btn-primary' %>
+      <%= f.password_field :password, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.password_field :password_confirmation, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+
+
+  <div class="form-group">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+        &nbsp;&nbsp;&nbsp;<%= f.submit nil, :class => "btn btn-default btn-primary" %>
     </div>
   </div>
 

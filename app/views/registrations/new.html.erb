@@ -1,40 +1,59 @@
 <div class="container">
   <div class="well col-md-4 col-md-offset-4" >
     <h3>Sign Up for gCamp!</h3>
-
     <%= form_for @user, url: signup_path do |f| %>
-
       <% if @user.errors.present? %>
-        <ul>
+      <div class="form-group has-warning has-feedback">
           <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+            <p class="control-label"><%= message %></p>
           <% end %>
-        </ul>
+      </div>
       <% end %>
       <div class="form-group">
         <div>
-          <%= f.label :email %>
+          <%= f.label :first_name, :class => 'control-label' %>
         </div>
         <div>
-          <%= f.email_field :email %>
+          <%= f.text_field :first_name, :class => "form-control" %>
         </div>
       </div>
+
       <div class="form-group">
         <div>
-          <%= f.label :password %>
+          <%= f.label :last_name, :class => 'control-label' %>
         </div>
         <div>
-          <%= f.password_field :password %>
+          <%= f.text_field :last_name, :class => "form-control" %>
         </div>
       </div>
+
       <div class="form-group">
         <div>
-          <%= f.label :password_confirmation %>
+          <%= f.label :email, :class => 'control-label' %>
         </div>
         <div>
-          <%= f.password_field :password_confirmation %>
+          <%= f.email_field :email, :class => "form-control" %>
         </div>
       </div>
+
+      <div class="form-group">
+        <div>
+          <%= f.label :password, :class => 'control-label' %>
+        </div>
+        <div>
+          <%= f.password_field :password, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div>
+          <%= f.label :password_confirmation, :class => 'control-label' %>
+        </div>
+        <div>
+          <%= f.password_field :password_confirmation, :class => "form-control" %>
+        </div>
+      </div>
+
       <div class="form-group">
         <div>
           <%= f.submit "Sign up", :class => "btn-primary" %>

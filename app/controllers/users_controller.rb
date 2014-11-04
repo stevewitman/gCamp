@@ -10,7 +10,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(
+      params.require(:user).permit(
+        :first_name, :last_name, :email, :password, :password_confirmation
+      )
+    )
+
     @user.save
     redirect_to users_path, notice: 'User was successfully created'
   end
