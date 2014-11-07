@@ -56,7 +56,7 @@ feature "Authentication" do
     expect(page).to have_content("Password confirmation doesn't match Password")
   end
 
-  scenario "users can signin" do
+  scenario "users can signin and signout" do
     visit '/'
     expect(page).to have_content("Sign In")
     expect(page).to have_content("Sign Up")
@@ -72,6 +72,11 @@ feature "Authentication" do
     end
     expect(page).to have_content("testfirst testlast")
     expect(page).to have_content("Sign Out")
+    click_on "Sign Out"
+    expect(page).to have_content("Sign In")
+    expect(page).to have_content("Sign Up")
+    expect(page).to have_no_content("Sign Out")
+
   end
 
   scenario "users cannot signin with invalid" do
@@ -116,7 +121,6 @@ feature "Authentication" do
     end
     expect(page).to have_content("Username / password combination is invalid")
   end
-
 
   def sign_up_with(firstname, lastname, email, password, passwordconf)
     fill_in "First name", with: firstname
