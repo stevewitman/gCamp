@@ -19,8 +19,4 @@ feature "projects" do
     expect(page).to have_content("Project was sucessfully deleted")
   end
 
-
-
-
-
 end
