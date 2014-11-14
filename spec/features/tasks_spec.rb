@@ -95,6 +95,34 @@ feature "Tasks" do
     expect(page).to have_no_content("TestDescription")
   end
 
+  scenario "users must enter a description when creating a new task" do
+    visit '/'
+    click_on "Tasks"
+    click_on "New Task"
+    expect(page).to have_content("Create a new task")
+    fill_in "Description", with: ""
+    fill_in "Due date", with: "20/10/2015"
+    click_on "Create Task"
+    expect(page).to have_content("Description can't be blank")
+  end
+
+  scenario "users must enter a description when editing a task" do
+    visit '/'
+    click_on "Tasks"
+    click_on "New Task"
+    expect(page).to have_content("Create a new task")
+    fill_in "Description", with: "TestDescription"
+    fill_in "Due date", with: "20/10/2015"
+    click_on "Create Task"
+    click_on "Tasks"
+    click_on "Edit"
+    expect(page).to have_content("Edit task")
+    fill_in "Description", with: ""
+    fill_in "Due date", with: "20/11/2015"
+    check('Complete')
+    click_on "Update Task"
+    expect(page).to have_content("Description can't be blank")
+  end
 
 
 end

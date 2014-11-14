@@ -1,6 +1,4 @@
 class Task < ActiveRecord::Base
-
-  validates_presence_of :description,
-                        :message => "can't be blank"
+  validates :description, presence: true
 
 end
