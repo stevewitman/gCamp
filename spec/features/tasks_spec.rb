@@ -124,5 +124,33 @@ feature "Tasks" do
     expect(page).to have_content("Description can't be blank")
   end
 
+  scenario "users cannot make new task with due date in the past" do
+    visit '/'
+    click_on "Tasks"
+    click_on "New Task"
+    expect(page).to have_content("Create a new task")
+    fill_in "Description", with: "TestDescription"
+    fill_in "Due date", with: "20/10/2013"
+    click_on "Create Task"
+    expect(page).to have_content("Due date can't be in the past")
+  end
+
+  scenario "users can edit tasks with a due date that is in the past" do
+    visit '/'
+    click_on "Tasks"
+    click_on "New Task"
+    expect(page).to have_content("Create a new task")
+    fill_in "Description", with: "TestDescription"
+    fill_in "Due date", with: "20/10/2015"
+    click_on "Create Task"
+    click_on "Tasks"
+    click_on "Edit"
+    expect(page).to have_content("Edit task")
+    fill_in "Description", with: "TestTwoDescription"
+    fill_in "Due date", with: "20/11/2013"
+    check('Complete')
+    click_on "Update Task"
+    expect(page).to have_content("Task was successfully updated.")
+  end
 
 end

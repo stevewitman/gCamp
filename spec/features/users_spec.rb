@@ -234,6 +234,4 @@ feature "Users" do
     expect(page).to have_content("Email has already been taken")
   end
 
-
-
 end
