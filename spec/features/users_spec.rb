@@ -110,4 +110,130 @@ feature "Users" do
     expect(page).to have_content("testfirst testlast")
   end
 
+  scenario "users cannot create a user without a first name" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    fill_in "First name", with: ""
+    fill_in "Last name", with: "testlast"
+    fill_in "Email", with: "test@mail.com"
+    fill_in "Password", with: "test"
+    fill_in "Password confirmation", with: "test"
+    click_on("Create User")
+    expect(page).to have_content("First name can't be blank")
+  end
+
+  scenario "users cannot edit a user without a first name" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    sign_up_with 'testfirst', 'testlast', 'test@mail.com', 'test', 'test'
+    expect(page).to have_content("testfirst testlast")
+    click_on "testfirst testlast"
+    expect(page).to have_content("First Name")
+    click_on "Edit"
+    expect(page).to have_content("Edit user")
+    fill_in "First name", with: ""
+    fill_in "Last name", with: "testlast2"
+    fill_in "Email", with: "test2@mail.com"
+    fill_in "Password", with: "test2"
+    fill_in "Password confirmation", with: "test2"
+    click_on "Update User"
+    expect(page).to have_content("First name can't be blank")
+  end
+
+  scenario "users cannot create a user without a last name" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    fill_in "First name", with: "testfirst"
+    fill_in "Last name", with: ""
+    fill_in "Email", with: "test@mail.com"
+    fill_in "Password", with: "test"
+    fill_in "Password confirmation", with: "test"
+    click_on("Create User")
+    expect(page).to have_content("Last name can't be blank")
+  end
+
+  scenario "users cannot edit a user without a last name" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    sign_up_with 'testfirst', 'testlast', 'test@mail.com', 'test', 'test'
+    expect(page).to have_content("testfirst testlast")
+    click_on "testfirst testlast"
+    expect(page).to have_content("First Name")
+    click_on "Edit"
+    expect(page).to have_content("Edit user")
+    fill_in "First name", with: "testlast2"
+    fill_in "Last name", with: ""
+    fill_in "Email", with: "test2@mail.com"
+    fill_in "Password", with: "test2"
+    fill_in "Password confirmation", with: "test2"
+    click_on "Update User"
+    expect(page).to have_content("Last name can't be blank")
+  end
+
+  scenario "users cannot create a user without an email" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    fill_in "First name", with: "testfirst"
+    fill_in "Last name", with: "testlast"
+    fill_in "Email", with: ""
+    fill_in "Password", with: "test"
+    fill_in "Password confirmation", with: "test"
+    click_on("Create User")
+    expect(page).to have_content("Email can't be blank")
+  end
+
+  scenario "users cannot edit a user without an email" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    sign_up_with 'testfirst', 'testlast', 'test@mail.com', 'test', 'test'
+    expect(page).to have_content("testfirst testlast")
+    click_on "testfirst testlast"
+    expect(page).to have_content("First Name")
+    click_on "Edit"
+    expect(page).to have_content("Edit user")
+    fill_in "First name", with: "testlast2"
+    fill_in "Last name", with: "testlast2"
+    fill_in "Email", with: ""
+    fill_in "Password", with: "test2"
+    fill_in "Password confirmation", with: "test2"
+    click_on "Update User"
+    expect(page).to have_content("Email can't be blank")
+  end
+
+  scenario "users must use a unique email to create a user" do
+    visit '/'
+    click_on "Users"
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    fill_in "First name", with: "testfirst"
+    fill_in "Last name", with: "testlast"
+    fill_in "Email", with: "test@mail.com"
+    fill_in "Password", with: "test"
+    fill_in "Password confirmation", with: "test"
+    click_on("Create User")
+    click_on "Create User"
+    expect(page).to have_content("Create a new user")
+    fill_in "First name", with: "testfirst2"
+    fill_in "Last name", with: "testlast2"
+    fill_in "Email", with: "test@mail.com"
+    fill_in "Password", with: "test2"
+    fill_in "Password confirmation", with: "test2"
+    click_on("Create User")
+    expect(page).to have_content("Email has already been taken")
+  end
+
+
+
 end
