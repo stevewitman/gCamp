@@ -14,8 +14,11 @@ class ProjectsController < ApplicationController
   def create
     project_params = params.require(:project).permit(:name)
     @project = Project.new(project_params)
-    @project.save
-    redirect_to project_path(@project), notice: 'Project was sucessfully created'
+    if @project.save
+      redirect_to project_path(@project), notice: 'Project was sucessfully created'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -25,8 +28,11 @@ class ProjectsController < ApplicationController
   def update
     project_params = params.require(:project).permit(:name)
     @project = Project.find(params[:id])
-    @project.update(project_params)
-    redirect_to project_path(@project), notice: 'Project was sucessfully updated'
+    if @project.update(project_params)
+      redirect_to project_path(@project), notice: 'Project was sucessfully updated'
+    else
+      render :edit
+    end
   end
 
   def destroy
