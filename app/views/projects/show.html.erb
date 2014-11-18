@@ -12,6 +12,16 @@
     <%= link_to 'Destroy', project_path(@project), class: "btn btn-danger", :method => :delete %>
   </div>
   <h1><%= @project.name %></h1>
+
+  <p>
+    <ol class="breadcrumb">
+      <li><%= link_to "Projects", projects_path %></li>
+      <li class="active"><%= @project.name %></li>
+    </ol>
+  </p>
+  <p>
+    <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
+  </p>
 </div>
 
 <br />
