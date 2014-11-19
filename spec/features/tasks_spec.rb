@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 feature "Tasks" do
-
   scenario "users can make new task" do
     visit '/'
     click_on "Projects"
     click_on "Create Project"
     fill_in "Name", with: "TestProject"
-    click_on "Create Project"  
+    click_on "Create Project"
     click_on "0 Tasks"
     click_on "New Task"
     expect(page).to have_content("Create a new task")
@@ -164,5 +163,4 @@ feature "Tasks" do
     click_on "Update Task"
     expect(page).to have_content("Task was successfully updated.")
   end
-
 end

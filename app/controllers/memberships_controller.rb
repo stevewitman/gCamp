@@ -44,13 +44,12 @@ class MembershipsController < ApplicationController
   end
 
   private
-
-  def membership_params
-    params.require(:membership).permit(
-      :user_id,
-      :project_id,
-      :role,
-    )
-  end
-
+  
+    def membership_params
+      params.require(:membership).permit(
+        :user_id,
+        :project_id,
+        :role,
+      )
+    end
 end

@@ -19,8 +19,5 @@ describe Task do
       expect(task.valid?).to be(true)
 
     end
-# return to the present
-
-
   end
 end

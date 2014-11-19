@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature "Authentication" do
-
   scenario "users can signup" do
     visit '/'
     expect(page).to have_content("Sign In")
@@ -132,5 +131,4 @@ feature "Authentication" do
       click_on("Sign up")
     end
   end
-
 end

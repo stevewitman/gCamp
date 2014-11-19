@@ -5,27 +5,24 @@
     </div>
   <% end %>
 
-
-<div class="page-header">
-  <div class="pull-right text-muted">
-    <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %>&nbsp;&nbsp;
-    <%= link_to 'Destroy', project_path(@project), class: "btn btn-danger", :method => :delete %>
+  <div class="page-header">
+    <div class="pull-right text-muted">
+      <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %>&nbsp;&nbsp;
+      <%= link_to 'Destroy', project_path(@project), class: "btn btn-danger", :method => :delete %>
+    </div>
+    <h1><%= @project.name %></h1>
+    <p>
+      <ol class="breadcrumb">
+        <li><%= link_to "Projects", projects_path %></li>
+        <li class="active"><%= @project.name %></li>
+      </ol>
+    </p>
+    <p>
+      <%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %>
+    </p>
+    <p>
+      <%= link_to pluralize(@project.users.count, "Member"), project_memberships_path(@project) %>
+    </p>
   </div>
-  <h1><%= @project.name %></h1>
-
-  <p>
-    <ol class="breadcrumb">
-      <li><%= link_to "Projects", projects_path %></li>
-      <li class="active"><%= @project.name %></li>
-    </ol>
-  </p>
-  <p>
-    <%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %>
-  </p>
-  <p>
-    <%= link_to pluralize(@project.users.count, "Member"), project_memberships_path(@project) %>
-  </p>
-</div>
-
-<br />
+  <br />
 </div>

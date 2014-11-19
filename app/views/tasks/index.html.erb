@@ -5,7 +5,7 @@
         <%= link_to_if((@ref == "all"), "Incomplete", project_tasks_path(@project, sort: "incomplete")) %>&nbsp;&nbsp;&nbsp;
         <%= link_to 'New Task', new_project_task_path(@project), class: "btn btn-primary" %>
       </div>
-      <h1><%= "#{@project.name}: Manage Tasks" %></h1>
+      <h1><%= "Tasks for #{@project.name}" %></h1>
       <% if notice %>
         <div class="container alert alert-success">
           <p id="notice"><%= notice %></p>

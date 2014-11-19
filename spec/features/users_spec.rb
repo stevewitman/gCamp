@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature "Users" do
-
   scenario "users can create a user" do
     visit '/'
     click_on "Users"
@@ -233,5 +232,4 @@ feature "Users" do
     click_on("Create User")
     expect(page).to have_content("Email has already been taken")
   end
-
 end

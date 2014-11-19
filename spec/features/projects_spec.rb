@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature "projects" do
-
   scenario "users can make new project" do
     visit '/'
     click_on "Projects"

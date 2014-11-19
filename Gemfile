@@ -48,6 +48,5 @@ end
 # I addded this
 gem 'bootstrap-sass', '~> 3.2.0'
 
-
 # I added this
 gem 'autoprefixer-rails'

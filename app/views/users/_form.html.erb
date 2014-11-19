@@ -54,17 +54,17 @@
     </div>
   </div>
 
-<% unless current_page?(new_user_path) %>
-  <div class="form-group">
-    <div class="col-sm-2">
-    </div>
-    <div class="col-sm-4">
-      <div class="well">
-        <div class="text-center">
-          <%= link_to 'Destroy', @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% unless current_page?(new_user_path) %>
+    <div class="form-group">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-4">
+        <div class="well">
+          <div class="text-center">
+            <%= link_to 'Destroy', @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
-  </div>
 <% end %>
