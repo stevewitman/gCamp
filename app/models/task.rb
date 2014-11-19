@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  validates :description, :due_date, presence: true
+  validates :description, presence: true
   validate :due_date_in_past, :on => :create
 
   belongs_to :project
@@ -9,5 +9,13 @@ class Task < ActiveRecord::Base
       errors.add(:due_date, "can't be in the past")
     end
   end
+
+
+
+  def self.not_complete
+    where("tasks.complete == ?", true)
+  end
+
+
 
 end

@@ -1,7 +1,6 @@
 <%= form_for @project, :html => {:class => 'form-horizontal'} do |f| %>
-  <% @obj = @project %>
-  <%= render partial: '/errors', object: @obj %>
 
+  <%= render "/errors", object: @project %>
   <div class="form-group">
     <div class="col-sm-2">
       <%= f.label :name, :class => 'control-label' %>

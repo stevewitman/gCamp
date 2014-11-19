@@ -1,9 +1,9 @@
-<% if @obj.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
-    <h4><%= pluralize(@obj.errors.count, "error") %> prohibited this <%= @obj.class.name
+    <h4><%= pluralize(object.errors.count, "error") %> prohibited this <%= object.class.name
      %> from being saved:</h4>
     <ul>
-    <% @obj.errors.full_messages.each do |message| %>
+    <% object.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
     </ul>

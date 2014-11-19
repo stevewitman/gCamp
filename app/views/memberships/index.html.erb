@@ -1,0 +1,56 @@
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+    <% end %>
+  <h1><%= "#{@project.name}: Manage Members" %></h1>
+  <%= render "/errors", object: @membership %>
+  <ol class="breadcrumb">
+    <li><%= link_to "Projects", projects_path %></li>
+    <li><%= link_to @project.name, project_path(@project) %></li>
+    <li>Members</li>
+  </ol>
+
+  <div class="container col-sm-5">
+    <div class="well form-inline">
+      <%= form_for [@project, @membership], html: {class: 'form-horizonal'} do |f| %>
+        <%= f.collection_select(:user_id,
+                                User.all,
+                                :id,
+                                :full_name,
+                                {include_blank: "Please select.."},
+                                class: "form-control" ) %>
+        &nbsp;&nbsp;
+        <%= f.select(:role, ["Member", "Owner"], {}, {class: "form-control"}) %>
+        &nbsp;&nbsp;
+        <%= f.submit "Add New Member",class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <table>
+      <% @project.memberships.where(project_id: @project.id).each do |m| %>
+        <%= form_for([@project, m]) do |f| %>
+          <tr>
+            <td style="padding: 10px;">
+              <%= link_to m.user.full_name, user_path(m.user) %>
+            </td>
+            <td style="padding: 10px;">
+              <%= f.select(:role, ["Member", "Owner"]) %>
+            </td>
+            <td style="padding: 10px;">
+              <%= f.submit "Update", class: "btn btn-primary btn-xs" %>
+            </td>
+            <td style="padding: 10px;">
+              <%= link_to "",
+                          project_membership_path(@project, m),
+                          method: :delete,
+                          data: {confirm: "Are you sure?"},
+                          class: "glyphicon glyphicon-remove" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+
+</div>

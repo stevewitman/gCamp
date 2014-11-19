@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = @project.tasks.where(complete: false) #<----------------------------NOT WORKING
+    @tasks = @project.tasks.where(complete: false)#<----------------------------NOT WORKING
     @ref = "incomplete"
     if params[:sort] == "all"
       @tasks = @project.tasks

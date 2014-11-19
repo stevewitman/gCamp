@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
             :password_confirmation, presence: true
   validates :email, :uniqueness => {:case_sensitive => false}
   has_secure_password
+
+  has_many :memberships
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

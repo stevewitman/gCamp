@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Task do
+  skip #*************************************************************
+
   it 'validate a task cannot be created with a date in the past' do
     task = Task.new(description: "test description",
                     due_date: Date.today - 2.days)
