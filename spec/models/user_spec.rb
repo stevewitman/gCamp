@@ -8,8 +8,14 @@ describe User do
                 email: "test@mail.com",
                 password: "test",
                 password_confirmation: "test")
-    task = Task.new(due_date: "1/1/1900")
-    task.valid?
-    expect(task.errors[:due_date].present?).to eq(true)
+    user2 = User.new(
+                first_name: "testfirst2",
+                last_name: "testlast2",
+                email: "TEST@mail.com",
+                password: "test",
+                password_confirmation: "test")
+    expect(user2.valid?).to be(false)
+    user2.email = "test2@mail.com"
+    expect(user2.valid?).to be(true)
   end
 end
