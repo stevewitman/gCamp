@@ -1,4 +1,4 @@
-<div class="container">
+<div>
   <% if notice %>
     <div class="alert alert-success">
       <%= notice %>
@@ -11,8 +11,7 @@
     <li><%= link_to @project.name, project_path(@project) %></li>
     <li>Members</li>
   </ol>
-
-  <div class="container col-sm-5">
+  <div class="col-sm-5 my-class-no-left-pad">
     <div class="well form-inline">
       <%= form_for [@project, @membership], html: {class: 'form-horizonal'} do |f| %>
         <%= f.collection_select(:user_id,
@@ -28,14 +27,14 @@
       <% end %>
     </div>
     <table>
-      <% @project.memberships.where(project_id: @project.id).each do |m| %>
+      <% @memberships.each do |m| %>
         <%= form_for([@project, m]) do |f| %>
           <tr>
-            <td style="padding: 10px;">
+            <td style="padding-right: 10px;">
               <%= link_to m.user.full_name, user_path(m.user) %>
             </td>
             <td style="padding: 10px;">
-              <%= f.select(:role, ["Member", "Owner"]) %>
+              <%= f.select(:role, ["Member", "Owner"], {}, :id => "select_#{m.user.id}") %>
             </td>
             <td style="padding: 10px;">
               <%= f.submit "Update", class: "btn btn-primary btn-xs" %>

@@ -91,7 +91,7 @@ feature "Authentication" do
     # invalid case no email
     fill_in "Email", with: ''
     fill_in "Password", with: 'test'
-      within(".well") do
+    within(".well") do
       click_on "Sign In"
     end
     expect(page).to have_content("Username / password combination is invalid")

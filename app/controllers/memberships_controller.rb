@@ -13,6 +13,7 @@ class MembershipsController < ApplicationController
   end
 
   def create
+    @memberships = @project.memberships.all
     @membership = @project.memberships.new(membership_params)
     if @membership.save
       redirect_to project_memberships_path(@project, @membership),
@@ -39,12 +40,12 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @project.memberships.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path(@project, @membership),
+    redirect_to project_memberships_path,
     notice: "#{@membership.user.full_name} was successfully destroyed."
   end
 
   private
-  
+
     def membership_params
       params.require(:membership).permit(
         :user_id,

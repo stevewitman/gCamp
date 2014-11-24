@@ -1,4 +1,4 @@
-  <div class="container">
+  <div>
     <div class="page-header">
       <div class="pull-right text-muted">
         <%= link_to_if((@ref == "incomplete"), "All", project_tasks_path(@project, sort: "all")) %> |
@@ -7,7 +7,7 @@
       </div>
       <h1><%= "Tasks for #{@project.name}" %></h1>
       <% if notice %>
-        <div class="container alert alert-success">
+        <div class="alert alert-success">
           <p id="notice"><%= notice %></p>
         </div>
       <% end %>

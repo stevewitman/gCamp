@@ -32,15 +32,17 @@
         </div>
       </div>
     </div>
-
-    <div class="gschool-main">
-      <!-- Main content -->
+    <div class="container">
+      <div class="gschool-main">
+        <!-- Main content -->
         <%= yield %>
+      </div>
     </div>
-    
     <hr class="style-two">
-    <!-- Footer -->
-      <footer class="container">
+
+    <div class="container">
+      <!-- Footer -->
+      <footer>
         <div class="text-muted pull-left">
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
@@ -63,5 +65,6 @@
           <% end %>
         </div>
       </footer>
+    </div>
   </body>
 </html>
