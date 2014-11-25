@@ -22,21 +22,42 @@
   <p>
     <strong>Due Date:</strong>&nbsp;&nbsp;<%= @task.due_date %>
   </p>
-  <br />
-  <h4>Comments</h4>
-
-  <% if current_user %>
-    <%= form_for [@task, @comment] do |f| %>
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-9">
-        <p>
-          <%= f.text_area :content, class: "form-control" %>
-        </p>
-        <p>
-          <%= f.submit "Add Comment", {class:"btn btn-primary"} %>
-        </p>
-      </div>
+  <table>
+    <tr>
+      <td>
+        <h4>Comments</h4>
+      </td>
+      <td></td>
+    </tr>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td class="col-md-3 my-class-no-left-pad">
+            <%= link_to comment.user.full_name, user_path %>
+            <br >
+            <p class="text-muted"><%= time_ago_in_words(comment.created_at) %> ago</p>
+        </td>
+        <td valign="top" class="col-md-9">
+          <%= comment.content %>
+        </td>
+        <br />
+      </tr>
     <% end %>
-  <% end %>
+
+    <% if current_user %>
+      <tr>
+        <%= form_for [@task, @comment] do |f| %>
+          <td class="col-md-3">
+          </td>
+          <td class="col-md-9">
+            <p>
+              <%= f.text_area :content, class: "form-control" %>
+            </p>
+            <p>
+              <%= f.submit "Add Comment", {class:"btn btn-primary"} %>
+            </p>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 </div>
