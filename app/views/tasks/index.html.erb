@@ -22,9 +22,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th width="50%">Description</th>
-          <th width="15%">Complete</th>
-          <th width="15%">Due</th>
+          <th width="20%">Description</th>
+          <th width="20%">Complete</th>
+          <th width="40%">Due</th>
           <th width="20%"></th>
         </tr>
       </thead>
@@ -32,14 +32,17 @@
       <tbody>
         <% @tasks.each do |task| %>
           <tr>
-            <td><%= task.description %></td>
+            <td><%= link_to task.description, project_task_path(@project, task) %></td>
             <td><%= task.complete %></td>
             <td><%= task.due_date %></td>
             <td>
               <div class="pull-right">
-                <%= link_to 'Show', project_task_path(@project, task), class: "btn btn-success" %>&nbsp;&nbsp;
                 <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-info" %>&nbsp;&nbsp;
-                <%= link_to 'Destroy', project_task_path(@project, task), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to "",
+                            project_task_path(@project, task),
+                            method: :delete,
+                            data: {confirm: "Are you sure?"},
+                            class: "glyphicon glyphicon-remove" %>
               </div>
             </td>
           </tr>
