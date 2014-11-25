@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :memberships
   end
 
+  post '/tasks/:task_id/create-comment' => 'tasks#create_comment', as: :task_comments
+  # link_to "foo", task_comments_path(task.id)
+
   get "about" => "pages#about", as: :about
   get "terms" => "pages#terms", as: :terms
   get "faq" => "pages#faq", as: :faq

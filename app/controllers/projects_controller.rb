@@ -40,4 +40,5 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_path, notice: 'Project was sucessfully deleted'
   end
+
 end
