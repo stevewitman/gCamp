@@ -79,7 +79,7 @@ feature "Memeberships" do
     fill_in "Password", with: "test"
     fill_in "Password confirmation", with: "test"
     click_on("Create User")
-    userid =
+    user = User.order(:id).last # ************************************************************
     # create a project
     click_on "Projects"
     click_on "Create Project"
