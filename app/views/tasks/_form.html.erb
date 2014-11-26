@@ -1,5 +1,5 @@
 <%= form_for [@project, @task], :html => {:class => 'form-horizontal'} do |f| %>
-  <%= render "/errors", object: @task %>
+  <%= render "/shared/errors", object: @task %>
 
   <!-- Description -->
   <div class="form-group">

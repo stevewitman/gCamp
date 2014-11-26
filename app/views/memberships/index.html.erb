@@ -5,7 +5,7 @@
     </div>
     <% end %>
   <h1><%= "#{@project.name}: Manage Members" %></h1>
-  <%= render "/errors", object: @membership %>
+  <%= render "/shared/errors", object: @membership %>
   <ol class="breadcrumb">
     <li><%= link_to "Projects", projects_path %></li>
     <li><%= link_to @project.name, project_path(@project) %></li>
