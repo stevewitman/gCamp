@@ -1,5 +1,30 @@
-<div class="vertical-center">
-  <h1 class="page-header">About</h1>
-  <p>Get organized and increase productivity with your team</p>
-  <%= image_tag "about.png" %>
+<h1 class="page-header">About</h1>
+<div class="col-md-4 my-class-no-left-pad">
+<%= image_tag "about.jpg" %>
+</div>
+<div class="col-md-8">
+  <p>
+    After learning the fundamentals, students work on projects that operate
+    much like a real consultancy. We strive to find real clients, so you walk
+    out of the program with real production experience. This makes the
+    transition from being a gSchool student to a full-time developer easy.
+  </p>
+  <p>
+    gSchool is 24 weeks long - double the time of most developer training
+    programs or coding schools. This allows for a true and deeper
+    understanding of the material.
+  </p>
+</div>
+<div class="col-md-12 my-class-no-left-pad">
+  <p>
+    <br />
+    gCamp is extremely active.  Check out the stats below.
+  </p>
+  <p>
+    <%= pluralize(Project.count, "Project") %>,
+    <%= pluralize(Task.count, "Task") %>,
+    <%= pluralize(Membership.count, "Project Members") %>,
+    <%= pluralize(User.count, "User") %>,
+    <%= pluralize(Comment.count, "Comment") %>
+  </p>
 </div>
