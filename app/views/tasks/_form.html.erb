@@ -1,51 +1,65 @@
 <%= form_for [@project, @task], :html => {:class => 'form-horizontal'} do |f| %>
-  <div class="col-sm-1">
-  </div>
-  <div class="col-sm-5">
-    <%= render "/shared/errors", object: @task %>
-  </div>
+  <% if @task.errors.any? %>
+    <div class="col-sm-12 form-group">
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-5">
+        <%= render "/shared/errors", object: @task %>
+      </div>
+      <div class="col-sm-6">
+      </div>
+    </div>
+  <% end %>
   <!-- Description -->
-  <div class="form-group">
-    <div class="col-sm-1">
+  <div class="col-sm-12 form-group">
+    <div class="col-sm-1 my-class-no-left-pad">
       <%= f.label :description, :class => 'control-label' %>
     </div>
     <div class="col-sm-5">
       <%= f.text_field :description, :class => "form-control" %>
     </div>
+    <div class="col-sm-6">
+    </div>
   </div>
 
   <!-- Due date -->
-  <div class="form-group">
-    <div class="col-sm-1">
+  <div class="col-sm-12 form-group">
+    <div class="col-sm-1 my-class-no-left-pad">
       <%= f.label :due_date, :class => 'control-label' %>
     </div>
     <div class="col-sm-5">
       <%= f.date_field :due_date, :class => "form-control" %>
+    </div>
+    <div class="col-sm-6">
     </div>
   </div>
   <br />
 
   <!-- Complete? -->
   <% unless current_page?(new_project_task_path(@project)) %>
-    <div class="form-group">
+    <div class="col-sm-12 form-group">
       <div class="col-sm-1">
       </div>
       <div class="col-sm-5">
         <%= f.check_box :complete %>
         <%= f.label :complete %>
       </div>
+      <div class="col-sm-6">
+      </div>
     </div>
     <br />
   <% end %>
 
   <!-- Submit form button -->
-  <div class="form-group">
+  <div class="col-sm-12 form-group">
     <div class="col-sm-1">
     </div>
     <div class="col-sm-5">
       <!-- <div class="actions"> -->
         <%= f.submit nil, :class => 'btn btn-default btn-primary' %>
       <!-- </div> -->
+    </div>
+    <div class="col-sm-6">
     </div>
   </div>
 <% end %>
