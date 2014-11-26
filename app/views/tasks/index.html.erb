@@ -6,11 +6,6 @@
         <%= link_to 'New Task', new_project_task_path(@project), class: "btn btn-primary" %>
       </div>
       <h1><%= "Tasks for #{@project.name}" %></h1>
-      <% if notice %>
-        <div class="alert alert-success">
-          <p id="notice"><%= notice %></p>
-        </div>
-      <% end %>
     </div>
     <p>
       <ol class="breadcrumb">

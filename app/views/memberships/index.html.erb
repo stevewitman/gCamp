@@ -1,9 +1,4 @@
 <div>
-  <% if notice %>
-    <div class="alert alert-success">
-      <%= notice %>
-    </div>
-    <% end %>
   <h1><%= "#{@project.name}: Manage Members" %></h1>
   <%= render "/shared/errors", object: @membership %>
   <ol class="breadcrumb">

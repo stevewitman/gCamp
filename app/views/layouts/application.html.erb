@@ -32,8 +32,14 @@
         </div>
       </div>
     </div>
+
     <div class="container">
       <div class="gschool-main">
+        <% if notice %>
+          <div class="alert alert-success">
+            <p class="notice"><%= notice %></p>
+          </div>
+        <% end %>
         <!-- Main content -->
         <%= yield %>
       </div>
