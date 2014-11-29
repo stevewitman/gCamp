@@ -14,7 +14,7 @@ feature "projects" do
     fill_in "Name", with: "TestProject2"
     click_on "Update Project"
     expect(page).to have_content("TestProject2")
-    click_on "Destroy"
+    click_on "Delete"
     expect(page).to have_content("Project was sucessfully deleted")
   end
 
