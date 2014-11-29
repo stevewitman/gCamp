@@ -17,7 +17,7 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.new(membership_params)
     if @membership.save
       redirect_to project_memberships_path(@project, @membership),
-      notice: "#{@membership.user.full_name} was successfully created."
+      notice: "#{@membership.user.full_name} was successfully added to #{@membership.project.name}."
     else
       render :index
     end
@@ -31,7 +31,7 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.find(params[:id])
     if @membership.update(membership_params)
       redirect_to project_memberships_path(@project, @membership),
-      notice: "#{@membership.user.full_name} was successfully updated."
+      notice: "Role for #{@membership.user.full_name} was successfully updated."
     else
       render :edit
     end

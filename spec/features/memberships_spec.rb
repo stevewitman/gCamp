@@ -23,7 +23,7 @@ feature "Memeberships" do
     select "testfirst testlast", from: "membership_user_id"
     select "Owner", from: "membership_role"
     click_on "Add New Member"
-    expect(page).to have_content("testfirst testlast was successfully created.")
+    expect(page).to have_content("testfirst testlast was successfully added to TestProject")
   end
 
   scenario "users cannot make new membership without selecting a user" do
@@ -68,7 +68,7 @@ feature "Memeberships" do
     expect(page).to have_content("User has already been added")
   end
 
-  scenario "users can make new membership" do
+  scenario "users can change a member's role" do
     # create a user
     visit '/'
     click_on "Users"
@@ -79,7 +79,7 @@ feature "Memeberships" do
     fill_in "Password", with: "test"
     fill_in "Password confirmation", with: "test"
     click_on("Create User")
-    user = User.order(:id).last # ************************************************************
+    user = User.order(:id).last
     # create a project
     click_on "Projects"
     click_on "Create Project"
@@ -89,13 +89,14 @@ feature "Memeberships" do
     # user can view show page
     click_on "0 Members"
     select "testfirst testlast", from: "membership_user_id"
-    select "Owner", from: "membership_role"
     click_on "Add New Member"
-    expect(page).to have_content("testfirst testlast was successfully created.")
-    save_and_open_page
-    select "Member", from: "1"
-
-
+    expect(page).to have_content("Members")
+    expect(page).to have_content("testfirst testlast was successfully added to TestProject")
+    # user can change members role
+    element_id = "select_#{user.id}"
+    select "Owner", from: "select_#{user.id}"
+    click_on "Update"
+    expect(page).to have_content(" Role for testfirst testlast was successfully updated")
   end
 
 
