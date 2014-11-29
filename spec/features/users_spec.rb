@@ -73,7 +73,7 @@ feature "Users" do
     expect(page).to have_content("First Name")
     click_on "Edit"
     expect(page).to have_content("Edit user")
-    click_on "Destroy"
+    click_on "Delete"
     expect(page).to have_content("User was successfully removed.")
   end
 

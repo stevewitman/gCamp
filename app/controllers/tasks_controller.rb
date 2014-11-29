@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     if @task.destroy
-      redirect_to project_tasks_path, notice: 'Task was successfully destroyed.' #check on task_url *************************
+      redirect_to project_tasks_path, notice: 'Task was successfully removed.' #check on task_url *************************
     end
   end
 

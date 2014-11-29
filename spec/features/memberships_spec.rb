@@ -96,7 +96,11 @@ feature "Memeberships" do
     element_id = "select_#{user.id}"
     select "Owner", from: "select_#{user.id}"
     click_on "Update"
-    expect(page).to have_content(" Role for testfirst testlast was successfully updated")
+    expect(page).to have_content("Role for testfirst testlast was successfully updated")
+    # user can delete a membership
+    click_on "delete_#{user.id}"
+    expect(page).to have_content("testfirst testlast was successfully removed from TestProject")
+
   end
 
 

@@ -86,8 +86,8 @@ feature "Tasks" do
     fill_in "Description", with: "TestDescription"
     fill_in "Due date", with: "20/10/2015"
     click_on "Create Task"
-    click_on "Show"
-    expect(page).to have_content("Description:  TestDescription")
+    click_on "TestDescription"
+    expect(page).to have_content("TestDescription")
     expect(page).to have_content("Completed:  false")
     expect(page).to have_content("Due Date:  10/20/2015")
   end
@@ -104,8 +104,9 @@ feature "Tasks" do
     fill_in "Description", with: "TestDescription"
     fill_in "Due date", with: "20/10/2015"
     click_on "Create Task"
+    task = Task.order(:id).last
     expect(page).to have_content("TestDescription")
-    click_on "Destroy"
+    click_on "delete_#{task.id}"
     expect(page).to have_no_content("TestDescription")
   end
 

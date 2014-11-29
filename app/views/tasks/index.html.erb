@@ -38,6 +38,7 @@
                 <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-info" %>&nbsp;&nbsp;
                 <%= link_to "",
                             project_task_path(@project, task),
+                            :id => "delete_#{task.id}",
                             method: :delete,
                             data: {confirm: "Are you sure?"},
                             class: "glyphicon glyphicon-remove" %>
