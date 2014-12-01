@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  before_action :projects
 
   def index
     @projects = Project.all
@@ -45,8 +44,5 @@ class ProjectsController < ApplicationController
 
   private
 
-    def projects
-      @projects = Project.all
-    end
 
 end

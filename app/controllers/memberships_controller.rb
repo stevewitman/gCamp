@@ -1,5 +1,4 @@
 class MembershipsController < ApplicationController
-  before_action :projects
 
   before_action do
     @project = Project.find(params[:project_id])
@@ -56,7 +55,4 @@ class MembershipsController < ApplicationController
       )
     end
 
-    def projects
-      @projects = Project.all
-    end
 end

@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  before_action :projects
 
   def index
     @project = Project.find(params[:project_id])
@@ -81,7 +80,4 @@ class TasksController < ApplicationController
       params.require(:task).permit(:description, :complete, :due_date)
     end
 
-    def projects
-      @projects = Project.all
-    end
 end
