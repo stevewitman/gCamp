@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :projects
+
   def index
     @project = Project.find(params[:project_id])
     @tasks = @project.tasks.where(complete: false)#<----------------------------NOT WORKING
@@ -77,5 +79,9 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(:description, :complete, :due_date)
+    end
+
+    def projects
+      @projects = Project.all
     end
 end

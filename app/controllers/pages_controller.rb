@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class PagesController < MarketingController
 @stats = Project.all.count
 
   def index

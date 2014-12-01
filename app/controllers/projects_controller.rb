@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :projects
+
   def index
     @projects = Project.all
   end
@@ -40,5 +42,11 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_path, notice: 'Project was sucessfully deleted'
   end
+
+  private
+
+    def projects
+      @projects = Project.all
+    end
 
 end
