@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 
+
   def index
     @projects = Project.all
   end
@@ -16,7 +17,7 @@ class ProjectsController < ApplicationController
     project_params = params.require(:project).permit(:name)
     @project = Project.new(project_params)
     if @project.save
-      redirect_to project_path(@project), notice: 'Project was sucessfully created'
+      redirect_to project_tasks_path(@project), notice: 'Project was sucessfully created'
     else
       render :new
     end
@@ -43,6 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   private
+
 
 
 end

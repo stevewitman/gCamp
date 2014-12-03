@@ -1,18 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :projects
-
-  # layout :select_layout
-  #
-  # private
-  # def select_layout
-  #   if current_user.nil?
-  #     "marketing"
-  #   else
-  #     "application"
-  #   end
-  # end
+  before_action :users_memberships
 
   def current_user
     User.find_by(id: session[:user_id])
@@ -20,9 +9,13 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def projects
-      @projects = Project.all
+  def users_memberships
+    if current_user
+      @users_memberships = current_user.memberships.all
+    else
+      redirect_to signin_path, notice: "You must be logged in to access that action"
     end
+  end
 
   helper_method :current_user
 end

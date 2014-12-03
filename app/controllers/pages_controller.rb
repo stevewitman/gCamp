@@ -1,5 +1,5 @@
-class PagesController < MarketingController
-@stats = Project.all.count
+class PagesController < PublicController
+# @stats = Project.all.count
 
   def index
     quote1 = Quote.new
