@@ -8,7 +8,5 @@ class Task < ActiveRecord::Base
       errors.add(:due_date, "can't be in the past")
     end
   end
-  def self.not_complete
-    where("tasks.complete == ?", true)
-  end
+
 end

@@ -9,11 +9,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # *** from class notes Dec 1
+  # def require_login
+  #   unless current_user
+  #     render file: 'public/404.html', status: :not_found, layout: false
+  #   end
+  # end
+
   def users_memberships
     if current_user
       @users_memberships = current_user.memberships.all
-    else
-      # redirect_to signin_path, notice: "You must be logged in to access that action"
     end
   end
 

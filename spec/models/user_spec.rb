@@ -14,7 +14,10 @@ describe User do
                 email: "TEST@mail.com",
                 password: "test",
                 password_confirmation: "test")
-    expect(user2.valid?).to be(false)
+    # expect(user2.valid?).to be(false)
+    user2.valid?
+    expect(user2.errors[:email.present?).to eq(true)
+
     user2.email = "test2@mail.com"
     expect(user2.valid?).to be(true)
   end
