@@ -1,61 +1,58 @@
-<div>
-  <div class="page-header">
-    <div class="pull-right">
-      <%= link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-info" %>
-    </div>
-    <h1><%= @task.description %></h1>
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-info" %>
   </div>
-  <ol class="breadcrumb">
-    <li><%= link_to "Projects", projects_path %></li>
-    <li><%= link_to @project.name, project_path(@project) %></li>
-    <li><%= link_to "Tasks", project_tasks_path(@project) %></li>
-    <li>Show</li>
-  </ol>
-  <p>
-    <strong>Completed:</strong>&nbsp;&nbsp;<%= @task.complete %>
-  </p>
-  <p>
-    <strong>Due Date:</strong>&nbsp;&nbsp;<%= @task.due_date %>
-  </p>
-  <table>
-    <tr>
-      <td>
-        <h4>Comments</h4>
-      </td>
-      <td></td>
-    </tr>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td class="col-md-3 my-class-no-left-pad">
-            <p>
-              <% if comment.user_id %>
-                <%= link_to comment.user.full_name, user_path(comment.user) %>
-              <% else %>
-                (deleted user)
-              <% end %>
-            </p>
-            <p class="text-muted"><%= time_ago_in_words(comment.created_at) %> ago</p>
-        </td>
-        <td valign="top" class="col-md-9">
-          <%= comment.content %>
-        </td>
-      </tr>
-    <% end %>
-    <% if current_user %>
-      <tr>
-        <%= form_for [@task, @comment] do |f| %>
-          <td class="col-md-3">
-          </td>
-          <td class="col-md-9">
-            <p>
-              <%= f.text_area :content, class: "form-control", cols: 75 %>
-            </p>
-            <p>
-              <%= f.submit "Add Comment", {class:"btn btn-primary"} %>
-            </p>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+  <h1><%= @task.description %></h1>
 </div>
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path %></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li><%= link_to "Tasks", project_tasks_path(@project) %></li>
+  <li>Show</li>
+</ol>
+<p>
+  <strong>Completed:</strong>&nbsp;&nbsp;<%= @task.complete %>
+</p>
+<p>
+  <strong>Due Date:</strong>&nbsp;&nbsp;<%= @task.due_date %>
+</p>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Comments</h4>
+  </div>
+</div>
+<% @comments.each do |comment| %>
+<div class="row">
+  <div class="col-md-2">
+    <p>
+      <% if comment.user_id %>
+      <%= link_to comment.user.full_name, user_path(comment.user) %>
+      <% else %>
+      (deleted user)
+      <% end %>
+    </p>
+    <p class="text-muted"><%= time_ago_in_words(comment.created_at) %> ago</p>
+  </div>
+  <div class="col-md-10">
+    <%= comment.content %>
+  </div>
+</div>
+<% end %>
+<% if current_user %>
+
+<%= form_for [@task, @comment], html: {class: "form-horizontal"} do |f| %>
+<div class="form-group">
+  <div class="col-md-10 col-md-offset-2">
+    <p>
+      <%= f.text_area :content, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.submit "Add Comment", {class:"btn btn-primary"} %>
+    </p>
+  </div>
+</div>
+</div>
+<% end %>
+<% end %>
+
+<!-- remove this when you can only get here if logged in -->
