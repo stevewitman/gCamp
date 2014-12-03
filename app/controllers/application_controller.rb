@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if current_user
       @users_memberships = current_user.memberships.all
     else
-      redirect_to signin_path, notice: "You must be logged in to access that action"
+      # redirect_to signin_path, notice: "You must be logged in to access that action"
     end
   end
 
