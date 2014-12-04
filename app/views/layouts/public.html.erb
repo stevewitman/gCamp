@@ -16,21 +16,17 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <% if current_user %>
-            <%= link_to "gCamp", projects_path, :class => "navbar-brand" %>
-          <% else %>
-            <%= link_to("gCamp", root_path, :class => "navbar-brand") %>
-          <% end %>
+          <%= link_to("gCamp", root_path, :class => "navbar-brand") %>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-              <li><%= link_to "#{current_user.first_name} #{current_user.last_name}",
+            <li><%= link_to "#{current_user.first_name} #{current_user.last_name}",
               user_path(current_user) %></li>
-              <li><%= link_to "Sign Out", signout_path %></li>
-              <% else %>
-              <li><%= link_to "Sign Up", signup_path %></li>
-              <li><%= link_to "Sign In", signin_path %></li>
+            <li><%= link_to "Sign Out", signout_path %></li>
+            <% else %>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Sign In", signin_path %></li>
             <% end %>
           </ul>
         </div>
@@ -40,9 +36,9 @@
     <div class="container">
       <div class="gschool-main">
         <% if notice %>
-          <div class="alert alert-success">
-            <p class="notice"><%= notice %></p>
-          </div>
+        <div class="alert alert-success">
+          <p class="notice"><%= notice %></p>
+        </div>
         <% end %>
         <!-- Main content -->
         <%= yield %>
@@ -58,22 +54,23 @@
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
           <%= link_to_unless_current("FAQ", faq_path) %>
+          <!-- | %= link_to 'Seed Database', seed_db_path % -->
           <% if current_user %> |
-            <%= link_to("My Projects", projects_path) %>
+          <%= link_to("My Projects", projects_path) %>
           <% end %>
         </div>
         <div class="footer-social pull-right">
           <%= link_to "http://www.linkedin.com" do %> <!-- get actual links -->
-            <%= image_tag("logo-in.png", width: "20em") %> <!-- use divs w/padding instead of em -->
+          <%= image_tag("logo-in.png", width: "20em") %> <!-- use divs w/padding instead of em -->
           <% end %>
           <%= link_to "http://www.github.com" do %>
-            <%= image_tag("logo-git.png", width: "20em") %>
+          <%= image_tag("logo-git.png", width: "20em") %>
           <% end %>
           <%= link_to "http://www.twitter.com" do %>
-            <%= image_tag("logo-twitter.png", width: "20em") %>
+          <%= image_tag("logo-twitter.png", width: "20em") %>
           <% end %>
           <%= link_to "http://www.gschool.com" do %>
-            <%= image_tag("logo-gschool.png", width: "80em") %>
+          <%= image_tag("logo-gschool.png", width: "80em") %>
           <% end %>
         </div>
       </footer>

@@ -65,14 +65,9 @@ class TasksController < ApplicationController
       @comment.save
       redirect_to project_task_path(@task.project_id, @task)
     else
-      #
       render :show
     end
   end
-
-
-
-
 
   private
 

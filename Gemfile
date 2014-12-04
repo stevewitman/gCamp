@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
 gem "pg"
+gem "rails_12factor"
 
 group :production do
-  gem "rails_12factor"
 end
+
+gem 'faker', '~> 1.4.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'

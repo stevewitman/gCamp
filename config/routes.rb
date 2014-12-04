@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   end
 
   post '/tasks/:task_id/create-comment' => 'tasks#create_comment', as: :task_comments
-  # link_to "foo", task_comments_path(task.id)
 
   get "about" => "pages#about", as: :about
   get "terms" => "pages#terms", as: :terms
@@ -18,4 +17,6 @@ Rails.application.routes.draw do
   get '/sign-in' => 'authentication#new', as: :signin
   post '/sign-in' => 'authentication#create'
   get '/sign-out' => 'authentication#destroy', as: :signout
+
+  # get '/seed_db' => 'application#seed_db', :as => 'seed_db'
 end

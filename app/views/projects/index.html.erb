@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @users_memberships.each do |m| %>
+      <% @current_memberships.each do |m| %>
         <tr>
           <td><%= link_to m.project.name, project_path(m.project_id) %></td>
           <td><%= link_to m.project.memberships.count, project_memberships_path(m.project_id) %></td>

@@ -18,23 +18,24 @@
       <div class="container">
         <div class="navbar-header">
           <%= link_to "gCamp", projects_path, :class => "navbar-brand" %>
-        </div><ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Dropdown
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <% if current_user %>
-              <% @users_memberships.each do |m| %>
-                <li><%= link_to m.project.name, project_path(m.project_id) %></li>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Dropdown
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <% if current_user %>
+                <% @current_memberships.each do |m| %>
+                  <li><%= link_to m.project.name, project_path(m.project_id) %></li>
+                <% end %>
               <% end %>
-            <% end %>
-            <li class="divider"></li>
-            <li><%= link_to 'New Project', new_project_path %></li>
-          </ul>
-        </li>
-      </ul>
+              <li class="divider"></li>
+              <li><%= link_to 'New Project', new_project_path %></li>
+            </ul>
+          </li>
+        </ul>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
@@ -70,7 +71,8 @@
           <%= link_to_unless_current("Home", root_path) %> |
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
-          <%= link_to_unless_current("FAQ", faq_path) %>
+          <%= link_to_unless_current("FAQ", faq_path) %> |
+          <%= link_to_unless_current("Users", users_path) %>
         </div>
       </footer>
     </div>
