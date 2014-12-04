@@ -17,10 +17,16 @@ class ProjectsController < ApplicationController
     project_params = params.require(:project).permit(:name)
     @project = Project.new(project_params)
     if @project.save
+      Membership.create!(
+                  project: @project,
+                  user_id: current_user.id,
+                  role: "Owner"
+                  )
       redirect_to project_tasks_path(@project), notice: 'Project was sucessfully created'
     else
       render :new
     end
+
   end
 
   def edit
