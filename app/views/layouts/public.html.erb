@@ -54,6 +54,7 @@
       <!-- Footer -->
       <footer>
         <div class="text-muted pull-left">
+          <%= link_to_unless_current("Home", root_path) %> |
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
           <%= link_to_unless_current("FAQ", faq_path) %>
