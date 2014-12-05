@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless current_user
-      render file: 'public/404.html', status: :not_found, layout: false
+      redirect_to signin_path, notice: 'You must be logged in to access that action'
     end
   end
 
@@ -46,6 +46,6 @@ class ApplicationController < ActionController::Base
 
 
   helper_method :current_user
-  
+
 
 end
