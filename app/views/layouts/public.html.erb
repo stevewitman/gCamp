@@ -54,7 +54,6 @@
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
           <%= link_to_unless_current("FAQ", faq_path) %>
-          | <%= link_to 'Seed Database', seed_db_path %>
           <% if current_user %> |
             <%= link_to("My Projects", projects_path) %>
           <% end %>
