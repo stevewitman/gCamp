@@ -7,10 +7,7 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:user_id])
   end
 
-  def seed_db
-    Rails.application.load_seed
-    redirect_to root_path
-  end
+
 
   class AccessDenied < StandardError
   end

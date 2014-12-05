@@ -54,10 +54,11 @@
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
           <%= link_to_unless_current("FAQ", faq_path) %>
-          <!-- | %= link_to 'Seed Database', seed_db_path % -->
+          | <%= link_to 'Seed Database', seed_db_path %>
           <% if current_user %> |
-          <%= link_to("My Projects", projects_path) %>
+            <%= link_to("My Projects", projects_path) %>
           <% end %>
+          <%= link_to 'Re-seed Database', seed_db_path, class: "btn btn-warning btn-xs" %>
         </div>
         <div class="footer-social pull-right">
           <%= link_to "http://www.linkedin.com" do %> <!-- get actual links -->
