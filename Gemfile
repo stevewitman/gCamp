@@ -6,7 +6,6 @@ gem "rails_12factor"
 group :production do
 end
 
-gem 'faker', '~> 1.4.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -36,6 +35,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'pry-rails'
+  gem 'faker', '~> 1.4.3'
 end
 
 # Use unicorn as the app server

@@ -5,6 +5,7 @@ class MembershipsController < ApplicationController
   end
 
   def index
+    
     @membership = @project.memberships.new
     @memberships = @project.memberships.all
   end

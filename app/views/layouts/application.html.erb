@@ -73,7 +73,11 @@
           <%= link_to_unless_current("Terms", terms_path) %> |
           <%= link_to_unless_current("FAQ", faq_path) %> |
           <%= link_to_unless_current("Users", users_path) %>
-          <%= link_to 'Re-seed Database', seed_db_path, class: "btn btn-warning btn-xs" %>
+          <%= link_to 'Re-seed Database',
+            seed_db_path,
+            class: "btn btn-warning btn-xs",
+            data: {confirm: "Are you sure?"},
+            title: "Clears database and rewrites seed data to database!" %>
         </div>
       </footer>
     </div>

@@ -57,7 +57,11 @@
           <% if current_user %> |
             <%= link_to("My Projects", projects_path) %>
           <% end %>
-          <%= link_to 'Re-seed Database', seed_db_path, class: "btn btn-warning btn-xs" %>
+          <%= link_to 'Re-seed Database',
+            seed_db_path,
+            class: "btn btn-warning btn-xs",
+            data: {confirm: "Are you sure?"},
+            title: "Clears database and rewrites seed data to database!" %>
         </div>
         <div class="footer-social pull-right">
           <%= link_to "http://www.linkedin.com" do %> <!-- get actual links -->
