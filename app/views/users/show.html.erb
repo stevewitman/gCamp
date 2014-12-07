@@ -1,8 +1,10 @@
 <div>
   <div class="page-header">
-    <div class="pull-right">
-      <%= link_to 'Edit', edit_user_path, class: "btn btn-primary" %>
-    </div>
+    <% if current_user == @user || current_user.admin %>
+      <div class="pull-right">
+        <%= link_to 'Edit', edit_user_path, class: "btn btn-primary" %>
+      </div>
+    <% end %> 
     <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
   </div>
 
@@ -12,7 +14,12 @@
     <dt>Last Name</dt>
     <dd><%= @user.last_name %></dd>
     <dt>Email</dt>
-    <dd><%= mail_to(@user.email) %></dd>
+    <% if current_user == @user || current_user.admin %>
+      <dd><%= mail_to(@user.email) %></dd>
+    <% else %>
+      <td></td>
+    <% end %>
+
   </dl>
   <br />
 </div>

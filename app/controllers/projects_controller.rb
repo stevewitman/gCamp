@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+  before_action
 
   def index
     @projects = Project.all

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :current_user_or_admin, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -38,12 +39,16 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
     def set_user
       @user = User.find(params[:id])
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :admin, :password, :password_confirmation)
+    end
+
+     def current_user_or_admin
+      raise AccessDenied unless current_user == @user || current_user.admin
     end
 end

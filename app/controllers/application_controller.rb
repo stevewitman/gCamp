@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:user_id])
   end
 
-
-
   class AccessDenied < StandardError
   end
 
@@ -27,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_memberships
-    if current_user # ********************************************************** can this go away?
+    if current_user
       @current_memberships = current_user.memberships.all
     end
   end
