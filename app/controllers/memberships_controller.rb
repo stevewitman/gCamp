@@ -1,11 +1,18 @@
 class MembershipsController < ApplicationController
-
   before_action do
-    @project = Project.find(params[:project_id])
+    begin
+      @project = Project.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      raise AccessDenied
+    end
   end
 
+
+
+  before_action :members_only
+
   def index
-    
+
     @membership = @project.memberships.new
     @memberships = @project.memberships.all
   end
@@ -54,6 +61,11 @@ class MembershipsController < ApplicationController
         :project_id,
         :role,
       )
+    end
+
+    def members_only
+      raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
+      current_user.admin
     end
 
 end

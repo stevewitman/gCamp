@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get '/sign-out' => 'authentication#destroy', as: :signout
 
   get '/seed_db' => 'public#seed_db', :as => 'seed_db'
+
+  get "*path", :to => "application#routing_error"
 end

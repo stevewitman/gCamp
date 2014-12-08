@@ -1,7 +1,16 @@
 class TasksController < ApplicationController
+  before_action do
+    begin
+      @project = Project.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      raise AccessDenied
+    end
+  end
+
+  before_action :members_only
 
   def index
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @tasks = @project.tasks.where(complete: false)#<----------------------------NOT WORKING
     @ref = "incomplete"
     if params[:sort] == "all"
@@ -11,24 +20,24 @@ class TasksController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     @comments = @task.comments.all
     @comment = @task.comments.new
   end
 
   def new
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @task = @project.tasks.new
   end
 
   def edit
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
   end
 
   def create
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @task = @project.tasks.new(task_params)
     @task.complete = false
     if @task.save
@@ -39,7 +48,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     if @task.update(task_params)
       redirect_to project_tasks_path(@project), notice: 'Task was successfully updated.'
@@ -49,7 +58,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     if @task.destroy
       redirect_to project_tasks_path, notice: 'Task was successfully removed.' #check on task_url *************************
@@ -73,6 +82,11 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:description, :complete, :due_date)
+  end
+
+  def members_only
+    raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
+    current_user.admin
   end
 
 end
