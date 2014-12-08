@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-gem "pg"
-gem "rails_12factor"
-
 group :production do
+  gem "rails_12factor"
 end
 
+gem "pg"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -35,7 +34,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem 'faker', '~> 1.4.3'
 end
 

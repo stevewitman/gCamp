@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
-
+  before_action :get_project, except: [:index]
+  before_action :members_only_permission, except: [:index]
 
   def index
     @projects = Project.all
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def new
@@ -51,6 +51,21 @@ class ProjectsController < ApplicationController
 
   private
 
+  def members_only_permission
+    p "************************"
+    p @project.memberships.pluck(:user_id).include? current_user.id
+    p current_user.id
+    raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
+    current_user.admin
+  end
+
+  def get_project
+    begin
+      @project = Project.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      raise AccessDenied
+    end
+  end
 
 
 end

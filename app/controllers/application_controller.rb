@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :render_404
-  
+
   protect_from_forgery with: :exception
+
   before_action :require_login
   before_action :current_memberships
 
@@ -36,20 +37,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
-
-  # def current_projects_users
-  #   if current_user # ********************************************************** can this go away?
-  #     @current_memberships = current_user.memberships.all
-  #       @current_memberships.each do |membership|
-  #       end
-  #   end
-  # end
-
-
-
   helper_method :current_user
-
 
 end
