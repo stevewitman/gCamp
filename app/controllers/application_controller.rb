@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActionController::RoutingError, with: :render_404
 
   protect_from_forgery with: :exception
 
@@ -14,10 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from AccessDenied, with: :render_404
-
-  def routing_error
-    raise ActionController::RoutingError.new(params[:path])
-  end
 
   private
 

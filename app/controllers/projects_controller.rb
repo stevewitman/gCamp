@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :get_project, except: [:index]
-  before_action :members_only_permission, except: [:index]
+  before_action :get_project, except: [:index, :new, :create]
+  before_action :current_user_permission, only: [:new, :create]
+  before_action :members_only_permission, except: [:index, :new, :create]
 
   def index
     @projects = Project.all
@@ -51,10 +52,12 @@ class ProjectsController < ApplicationController
 
   private
 
+  def current_user_permission
+
+    raise AccessDenied unless current_user
+  end
+
   def members_only_permission
-    p "************************"
-    p @project.memberships.pluck(:user_id).include? current_user.id
-    p current_user.id
     raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
     current_user.admin
   end
