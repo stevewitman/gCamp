@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :get_project, except: [:index, :new, :create]
-  before_action :current_user_permission, only: [:new, :create]
-  before_action :members_only_permission, except: [:index, :new, :create]
+  before_action :get_project, only: [:show, :edit, :update, :destroy]
+  before_action :members_only_permission, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -21,7 +20,7 @@ class ProjectsController < ApplicationController
       Membership.create!(
                   project: @project,
                   user_id: current_user.id,
-                  role: "Owner"
+                  role: "owner"
                   )
       redirect_to project_tasks_path(@project), notice: 'Project was sucessfully created'
     else
