@@ -1,13 +1,9 @@
 class TasksController < ApplicationController
-  before_action do
-    begin
-      @project = Project.find(params[:project_id])
-    rescue ActiveRecord::RecordNotFound
-      raise AccessDenied
-    end
-  end
-
-  before_action :members_only_permission
+  before_action :set_project
+  # before_action :authorize_user
+  # before_action :authorize_member
+  # before_action :authorize_member, only: [:show, :destroy]
+  # before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
     # @project = Project.find(params[:project_id])
@@ -84,9 +80,21 @@ class TasksController < ApplicationController
     params.require(:task).permit(:description, :complete, :due_date)
   end
 
-  def members_only_permission
-    raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
-    current_user.admin
+  def authorize_member
+    raise AccessDenied unless @project.memberships.where(role: "Member").pluck(:user_id).include? current_user.id || current_user.admin
   end
 
+  # def authorize_owner
+  #   raise AccessDenied unless @project.memberships.where(role: "Owner").pluck(:user_id).include? current_user.id || current_user.admin
+  # end
+
+  def set_project
+    begin
+      if params[:project_id]
+        @project = Project.find(params[:project_id])
+      end
+    rescue ActiveRecord::RecordNotFound
+      raise AccessDenied
+    end
+  end
 end

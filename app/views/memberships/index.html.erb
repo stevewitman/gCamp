@@ -16,7 +16,7 @@
                                 {include_blank: "Please select.."},
                                 class: "form-control" ) %>
         &nbsp;&nbsp;
-        <%= f.select(:role, [:member, :owner], {}, {class: "form-control"}) %>
+        <%= f.select(:role, [:Member, :Owner], {}, {class: "form-control"}) %>
         &nbsp;&nbsp;
         <%= f.submit "Add New Member",class: "btn btn-primary" %>
       <% end %>
@@ -29,7 +29,7 @@
               <%= link_to m.user.full_name, user_path(m.user) %>
             </td>
             <td style="padding: 10px;">
-              <%= f.select(:role, [:member, :owner], {}, :id => "select_#{m.user.id}") %>
+              <%= f.select(:role, [:Member, :Owner], {}, :id => "select_#{m.user.id}") %>
             </td>
             <td style="padding: 10px;">
               <%= f.submit "Update", class: "btn btn-primary btn-xs" %>

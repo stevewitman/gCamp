@@ -181,4 +181,39 @@ feature "Tasks" do
     click_on "Update Task"
     expect(page).to have_content("Task was successfully updated.")
   end
+
+  scenario "deleting a task should delete comment(s) also" do
+    user = create_user(
+    first_name: "TestFirst",
+    last_name: "TestLast",
+    email: "testmail.com",
+    password: 'test',
+    admin: false)
+    project = Project.create!(name: "TestProject")
+    membership = Membership.create!(
+    user_id: user.id,
+    project_id: project.id,
+    role: "Member")
+    task = Task.create!(
+    project_id: project.id,
+    description: "Test task",
+    due_date: '20/10/2100')
+    sign_in(user)
+    visit project_task_path(project, task)
+    fill_in "comment[content]", with: "Test comment"
+    click_on "Add Comment"
+    click_on "About"
+    expect(page).to have_content("1 Project, 1 Task, 1 Project Member, 1 User, 1 Comment")
+    visit project_task_path(project, task)
+    expect(page).to have_content("Test comment")
+    expect(page).to have_content("TestFirst TestLast")
+    # delete task
+    visit project_tasks_path(project)
+    task_last = Task.order(:id).last
+    click_on "delete_#{task_last.id}"
+    # check counts
+    click_on "About"
+    expect(page).to have_content("1 Project, 0 Tasks, 0 Project Members, 1 User, 0 Comments")
+  end
+  
 end

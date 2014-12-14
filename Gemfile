@@ -10,6 +10,7 @@ gem "pg"
 gem 'rails', '4.1.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -30,11 +31,13 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'faraday'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  # gem 'pry-rails'
+  gem 'pry-rails'
   gem 'faker', '~> 1.4.3'
 end
 

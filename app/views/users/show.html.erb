@@ -4,7 +4,7 @@
       <div class="pull-right">
         <%= link_to 'Edit', edit_user_path, class: "btn btn-primary" %>
       </div>
-    <% end %> 
+    <% end %>
     <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
   </div>
 
@@ -17,8 +17,9 @@
     <% if current_user == @user || current_user.admin %>
       <dd><%= mail_to(@user.email) %></dd>
     <% else %>
-      <td></td>
+      <dd></dd>
     <% end %>
+
 
   </dl>
   <br />

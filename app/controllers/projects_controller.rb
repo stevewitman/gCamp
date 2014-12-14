@@ -1,9 +1,12 @@
 class ProjectsController < ApplicationController
-  before_action :get_project, only: [:show, :edit, :update, :destroy]
-  before_action :members_only_permission, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  # before_action :authorize_member, only: [:show, :destroy]
+  # before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.all
+    tracker_api = TrackerAPI.new
+    @tracker_projects = tracker_api.projects(current_user.pivotal_tracker_token)
   end
 
   def show
@@ -20,7 +23,7 @@ class ProjectsController < ApplicationController
       Membership.create!(
                   project: @project,
                   user_id: current_user.id,
-                  role: "owner"
+                  role: "Owner"
                   )
       redirect_to project_tasks_path(@project), notice: 'Project was sucessfully created'
     else
@@ -49,25 +52,31 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: 'Project was sucessfully deleted'
   end
 
+  def role?(project, role)
+    project.memberships.pluck(:user_id).include? current_user.id && current_user.role == role
+  end
+
+  def owner?(project)
+    memberships.where(project_id: project, role: "Owner").present?
+  end
+
+
   private
 
-  def current_user_permission
-
-    raise AccessDenied unless current_user
+  def authorize_member
+    raise AccessDenied unless @project.memberships.where(role: "Member").pluck(:user_id).include? current_user.id || current_user.admin
   end
 
-  def members_only_permission
-    raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
-    current_user.admin
+  def authorize_owner
+    raise AccessDenied unless @project.memberships.where(role: "Owner").pluck(:user_id).include? current_user.id || current_user.admin
   end
 
-  def get_project
+  def set_project
     begin
       @project = Project.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       raise AccessDenied
     end
   end
-
 
 end

@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   before_action :current_memberships
 
-  def current_user
-    User.find_by(id: session[:user_id])
-  end
 
   class AccessDenied < StandardError
   end
@@ -33,5 +30,16 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
+  private
+
+  def current_user
+    # just return current_user if it is already set otherwise set it
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  end
+
+  def current_user?
+    current_user.present?
+  end
 
 end

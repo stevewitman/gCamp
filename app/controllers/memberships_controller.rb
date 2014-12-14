@@ -7,7 +7,7 @@ class MembershipsController < ApplicationController
     end
   end
 
-  before_action :members_only_permission
+  # before_action :authorize_member
 
   def index
 
@@ -61,7 +61,7 @@ class MembershipsController < ApplicationController
       )
     end
 
-    def members_only_permission
+    def authorize_member
       raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
       current_user.admin
     end
