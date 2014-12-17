@@ -1,6 +1,5 @@
 class AuthenticationController < PublicController
 
-
   def new
     @user = User.new
   end

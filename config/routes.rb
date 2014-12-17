@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   post '/sign-in' => 'authentication#create'
   get '/sign-out' => 'authentication#destroy', as: :signout
 
-  get '/seed_db' => 'public#seed_db', :as => 'seed_db'
+  get '/seed_db' => 'application#seed_db', :as => 'seed_db'
 
 end
