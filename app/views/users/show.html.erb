@@ -20,7 +20,7 @@
         <dd></dd>
     <% end %>
     <dt>Pivotal Tracker Token</dt>
-    <dd><%= @user.pivotal_tracker_token %></dd>
+    <dd><%= mask_token(@user.pivotal_tracker_token) %></dd>
   </dl>
   <br />
 </div>
