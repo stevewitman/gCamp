@@ -40,21 +40,21 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit( :first_name,
-                                    :last_name,
-                                    :email,
-                                    :admin,
-                                    :password,
-                                    :password_confirmation,
-                                    :pivotal_tracker_token)
-    end
+  def user_params
+    params.require(:user).permit( :first_name,
+                                  :last_name,
+                                  :email,
+                                  :admin,
+                                  :password,
+                                  :password_confirmation,
+                                  :pivotal_tracker_token)
+  end
 
-    def current_user_or_admin
-      raise AccessDenied unless current_user == @user || current_user.admin
-    end
+  def current_user_or_admin
+    raise AccessDenied unless current_user == @user || current_user.admin
+  end
 end
