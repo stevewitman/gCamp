@@ -8,7 +8,7 @@ admin = User.create!(
   first_name: 'Admin',
   last_name: 'User',
   email: 'admin@example.com',
-  password: 'password',
+  password: 'pass',
   admin: true
 )
 

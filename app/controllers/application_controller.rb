@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+  class ApplicationController < ActionController::Base
 # good
   protect_from_forgery with: :exception
 
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from AccessDenied, with: :render_404
-  
+
   def seed_db
     Rails.application.load_seed
     redirect_to root_path, notice: 'Re-seeded database'

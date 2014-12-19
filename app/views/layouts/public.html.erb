@@ -53,9 +53,9 @@
           <%= link_to_unless_current("Home", root_path) %> |
           <%= link_to_unless_current("About", about_path) %> |
           <%= link_to_unless_current("Terms", terms_path) %> |
-          <%= link_to_unless_current("FAQ", faq_path) %>
-          <% if current_user %> |
-            <%= link_to("My Projects", projects_path) %>
+          <%= link_to_unless_current("FAQ", faq_path) %> |
+          <% if current_user %>
+            <%= link_to("My Projects", projects_path) %> |
           <% end %>
           <%= link_to 'Re-seed Database',
             seed_db_path,

@@ -10,17 +10,17 @@
 
   <dl class="dl-horizontal">
     <dt>First Name</dt>
-    <dd><%= @user.first_name %></dd>
+      <dd><%= @user.first_name %></dd>
     <dt>Last Name</dt>
-    <dd><%= @user.last_name %></dd>
+      <dd><%= @user.last_name %></dd>
     <dt>Email</dt>
-    <% if current_user == @user || current_user.admin %>
-      <dd><%= mail_to(@user.email) %></dd>
-    <% else %>
-      <dd></dd>
+      <% if current_user == @user || current_user.admin %>
+        <dd><%= mail_to(@user.email) %></dd>
+      <% else %>
+        <dd></dd>
     <% end %>
-
-
+    <dt>Pivotal Tracker Token</dt>
+    <dd><%= @user.pivotal_tracker_token %></dd>
   </dl>
   <br />
 </div>
