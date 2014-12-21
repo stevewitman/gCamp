@@ -60,6 +60,10 @@ class ProjectsController < ApplicationController
     memberships.where(project_id: project, role: "Owner").present?
   end
 
+  def tracker_stories
+    tracker_api = TrackerAPI.new
+    @tracker_stories = tracker_api.stories(current_user.pivotal_tracker_token, params[:tracker_id])
+  end
 
   private
 

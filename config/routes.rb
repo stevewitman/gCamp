@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   post '/tasks/:task_id/create-comment' => 'tasks#create_comment', as: :task_comments
+  get "/tracker_stories/:tracker_id" => "projects#tracker_stories", as: :tracker_stories
 
   get "about" => "pages#about", as: :about
   get "terms" => "pages#terms", as: :terms
