@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  # before_action :authorize_member, only: [:show, :destroy]
-  # before_action :authorize_owner, only: [:edit, :update, :destroy]
+  before_action :authorize_member, only: [:show, :destroy]
+  before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -67,20 +67,12 @@ class ProjectsController < ApplicationController
 
   private
 
-  def authorize_member
-    raise AccessDenied unless @project.memberships.where(role: "Member").pluck(:user_id).include? current_user.id || current_user.admin
-  end
-
-  def authorize_owner
-    raise AccessDenied unless @project.memberships.where(role: "Owner").pluck(:user_id).include? current_user.id || current_user.admin
-  end
-
-  def set_project
-    begin
-      @project = Project.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      raise AccessDenied
+    def set_project
+      begin
+        @project = Project.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        raise AccessDenied
+      end
     end
-  end
 
 end

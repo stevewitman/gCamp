@@ -55,6 +55,6 @@ class UsersController < ApplicationController
   end
 
   def current_user_or_admin
-    raise AccessDenied unless current_user == @user || current_user.admin
+    raise AccessDenied unless current_user == @user || is_admin?
   end
 end

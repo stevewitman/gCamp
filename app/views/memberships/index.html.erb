@@ -6,45 +6,67 @@
     <li><%= link_to @project.name, project_path(@project) %></li>
     <li>Members</li>
   </ol>
+
   <div class="col-sm-5 my-class-no-left-pad">
-    <div class="well form-inline">
-      <%= form_for [@project, @membership], html: {class: 'form-horizonal'} do |f| %>
-        <%= f.collection_select(:user_id,
-                                User.all,
-                                :id,
-                                :full_name,
-                                {include_blank: "Please select.."},
-                                class: "form-control" ) %>
-        &nbsp;&nbsp;
-        <%= f.select(:role, [:Member, :Owner], {}, {class: "form-control"}) %>
-        &nbsp;&nbsp;
-        <%= f.submit "Add New Member",class: "btn btn-primary" %>
-      <% end %>
-    </div>
-    <table>
-      <% @memberships.each do |m| %>
-        <%= form_for([@project, m]) do |f| %>
+    <% if is_owner? || is_admin? %>
+      <div class="well form-inline">
+        <%= form_for [@project, @membership], html: {class: 'form-horizonal'} do |f| %>
+          <%= f.collection_select(:user_id,
+                                  User.all,
+                                  :id,
+                                  :full_name,
+                                  {include_blank: "Please select.."},
+                                  class: "form-control" ) %>
+          &nbsp;&nbsp;
+          <%= f.select(:role, [:Member, :Owner], {}, {class: "form-control"}) %>
+          &nbsp;&nbsp;
+          <%= f.submit "Add New Member",class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <table>
+        <% @memberships.each do |m| %>
+          <%= form_for([@project, m]) do |f| %>
+            <tr>
+              <td style="padding-right: 10px;">
+                <%= link_to m.user.full_name, user_path(m.user) %>
+              </td>
+              <td style="padding: 10px;">
+                <%= f.select(:role, [:Member, :Owner], {}, :id => "select_#{m.user.id}") %>
+              </td>
+              <td style="padding: 10px;">
+                <%= f.submit "Update", class: "btn btn-primary btn-xs" %>
+              </td>
+              <td style="padding: 10px;">
+                <%= link_to "",
+                            project_membership_path(@project, m),
+                            :id => "delete_#{m.user.id}",
+                            method: :delete,
+                            data: {confirm: "Are you sure?"},
+                            class: "glyphicon glyphicon-remove" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    <% else %>
+      <table>
+        <% @memberships.each do |m| %>
+          <%= form_for([@project, m]) do |f| %>
           <tr>
             <td style="padding-right: 10px;">
               <%= link_to m.user.full_name, user_path(m.user) %>
             </td>
             <td style="padding: 10px;">
-              <%= f.select(:role, [:Member, :Owner], {}, :id => "select_#{m.user.id}") %>
+              <%= m.role %>
             </td>
             <td style="padding: 10px;">
-              <%= f.submit "Update", class: "btn btn-primary btn-xs" %>
             </td>
             <td style="padding: 10px;">
-              <%= link_to "",
-                          project_membership_path(@project, m),
-                          :id => "delete_#{m.user.id}",
-                          method: :delete,
-                          data: {confirm: "Are you sure?"},
-                          class: "glyphicon glyphicon-remove" %>
             </td>
           </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </table>
+      </table>
+    <% end %>
   </div>
 </div>

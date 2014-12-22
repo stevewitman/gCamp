@@ -10,7 +10,6 @@ class MembershipsController < ApplicationController
   before_action :authorize_member
 
   def index
-
     @membership = @project.memberships.new
     @memberships = @project.memberships.all
   end
@@ -51,6 +50,12 @@ class MembershipsController < ApplicationController
     notice: "#{@membership.user.full_name} was successfully removed from #{@membership.project.name}"
   end
 
+  # def project_owners
+  #   project_owners = @project.memberships.all
+  #
+  # end
+
+
   private
 
     def membership_params
@@ -61,9 +66,9 @@ class MembershipsController < ApplicationController
       )
     end
 
-    def authorize_member
-      raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
-      current_user.admin
-    end
+    # def authorize_member
+    #   raise AccessDenied unless @project.memberships.pluck(:user_id).include? current_user.id ||
+    #   current_user.admin
+    # end
 
 end
