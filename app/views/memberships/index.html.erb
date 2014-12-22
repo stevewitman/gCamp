@@ -61,8 +61,19 @@
             </td>
             <td style="padding: 10px;">
             </td>
-            <td style="padding: 10px;">
-            </td>
+            <% if m.user_id == current_user.id %>
+              <td style="padding: 10px;">
+                <%= link_to "",
+                project_membership_path(@project, m),
+                :id => "delete_#{m.user.id}",
+                method: :delete,
+                data: {confirm: "Are you sure?"},
+                class: "glyphicon glyphicon-remove" %>
+              </td>
+            <% else %>
+              <td style="padding: 10px;">
+              </td>
+            <% end %>
           </tr>
           <% end %>
         <% end %>
