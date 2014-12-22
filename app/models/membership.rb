@@ -6,12 +6,12 @@ class Membership < ActiveRecord::Base
 
   before_destroy :check_owners
 
-  def owner
+  def owners
     project.memberships.where(role: "Owner")
   end
 
   def check_owners
-    if owner.count == 1 && role == "Owner"
+    if owners.count == 1 && role == "Owner"
       return false
     end
   end

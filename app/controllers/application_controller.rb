@@ -35,7 +35,7 @@
   helper_method :current_memberships
   helper_method :authorize_member
   helper_method :authorize_owner
-  # helper_method :project_owner?
+  helper_method :project_owners
   helper_method :is_member?
   helper_method :is_owner?
   helper_method :is_admin?
