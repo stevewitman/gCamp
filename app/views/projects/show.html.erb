@@ -1,8 +1,10 @@
 <div>
   <div class="page-header">
-    <div class="pull-right">
-      <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %>&nbsp;&nbsp;
-    </div>
+    <% if is_owner? || is_admin? %>
+      <div class="pull-right">
+        <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %>&nbsp;&nbsp;
+      </div>
+    <% end %>
     <h1><%= @project.name %></h1>
   </div>
   <p>

@@ -75,7 +75,7 @@
     # end
 
     def authorize_owner
-      raise AccessDenied unless(is_owner? || is_admin)
+      raise AccessDenied unless(is_owner? || is_admin?)
     end
 
     # returns an array of owner memberships for the current project ... NOT USED???
