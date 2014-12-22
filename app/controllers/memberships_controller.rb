@@ -7,7 +7,7 @@ class MembershipsController < ApplicationController
     end
   end
 
-  # before_action :authorize_member
+  before_action :authorize_member
 
   def index
 
