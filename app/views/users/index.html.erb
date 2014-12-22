@@ -20,12 +20,13 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></td>
-          <% if current_user == user || current_user.admin %>
+          <% if user == current_user || is_admin? %>
             <td><%= mail_to(user.email) %></td>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
           <% else %>
             <td></td>
+            <td></td>
           <% end %>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
         </tr>
       <% end %>
     </tbody>
