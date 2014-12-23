@@ -45,19 +45,17 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    @membership.destroy
-    if current_user.id == @membership.user_id
-      redirect_to projects_path, notice: "#{@membership.user.full_name} was successfully removed from #{@membership.project.name}"
+    if ((@project.memberships.where(role: "Owner").count <= 1) & @membership.role == "Owner")
+      redirect_to project_memberships_path, notice: "Last 'Owner' cannot be removed."
     else
-      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was successfully removed from #{@membership.project.name}"
+      @membership.destroy
+      if current_user.id == @membership.user_id
+        redirect_to projects_path, notice: "#{@membership.user.full_name} was successfully removed from #{@membership.project.name}"
+      else
+        redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was successfully removed from #{@membership.project.name}"
+      end
     end
   end
-
-  # def project_owners
-  #   project_owners = @project.memberships.all
-  #
-  # end
-
 
   private
 

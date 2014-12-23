@@ -38,8 +38,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry-rails'
-  gem 'faker', '~> 1.4.3'
 end
+  gem 'faker', '~> 1.4.3'
 
 # Use unicorn as the app server
 # gem 'unicorn'

@@ -9,30 +9,13 @@
 
   rescue_from AccessDenied, with: :render_404
 
-  def seed_db
-    Rails.application.load_seed
-    redirect_to root_path, notice: 'Re-seeded database'
-  end
-
-  def redirect_back_or(default)
-    redirect_to(session[:return_to] || default)
-    clear_return_to
-  end
-
-  def store_location
-    session[:return_to] = request.fullpath
-  end
-
-  def clear_return_to
-    session[:return_to] = nil
-  end
-
   helper_method :current_user
   helper_method :current_memberships
   helper_method :authorize_member
   helper_method :authorize_owner
   helper_method :project_owners
   helper_method :is_member?
+  helper_method :is_co_member?
   helper_method :is_owner?
   helper_method :is_admin?
 
@@ -40,9 +23,18 @@
 
     def require_login
       unless current_user
-        session[:request_path] = request.fullpath
+        store_location
         redirect_to signin_path, notice: 'You must be logged in to access that action'
       end
+    end
+
+    def redirect_back_or(default)
+      redirect_to(session[:return_url] || default)
+      session.delete(:return_url)
+    end
+
+    def store_location
+      session[:return_url] = request.url if request.get?
     end
 
     def render_404
@@ -55,6 +47,10 @@
 
     def is_member?
       @project.memberships.where(role: "Member").pluck(:user_id).include? current_user.id
+    end
+
+    def is_co_member?(user)
+      !(user.memberships.all.pluck(:project_id) & current_user.memberships.all.pluck(:project_id)).empty?
     end
 
     def is_owner?
@@ -83,23 +79,4 @@
       @project.memberships.where(role: "Owner")
     end
 
-end
-
-
-
-def set_return_point(path, overwrite = false)
-  if overwrite or session[:return_point].blank?
-    session[:return_point] = path
-  end
-end
-
-def return_point
-  session[:return_point] || projects_path
-end
-
-def require_login(return_point = request.url)
-  unless current_user
-    set_return_point(return_point)
-    redirect_to signin_path, notice: "You must be logged in to access that action"
-  end
 end
