@@ -44,6 +44,10 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def current_user_or_admin
+      raise AccessDenied unless current_user == @user || is_admin?
+    end
+
     def user_params
       if is_admin?
         params.require(:user).permit( :first_name,
@@ -62,10 +66,9 @@ class UsersController < ApplicationController
                                       :password,
                                       :password_confirmation,
                                       :pivotal_tracker_token)
+      end
     end
 
-    def current_user_or_admin
-      raise AccessDenied unless current_user == @user || is_admin?
-    end
+
 end
 # look up ... hash method.merge
