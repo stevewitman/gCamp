@@ -27,6 +27,7 @@
 
     def require_login
       unless current_user
+        session[:request_path] = request.fullpath
         redirect_to signin_path, notice: 'You must be logged in to access that action'
       end
     end

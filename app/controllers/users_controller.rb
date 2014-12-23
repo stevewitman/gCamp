@@ -49,6 +49,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
+      # look up ... hash method.merge ... for refactor possibilities
       if is_admin?
         params.require(:user).permit( :first_name,
                                       :last_name,
