@@ -14,6 +14,19 @@
     redirect_to root_path, notice: 'Re-seeded database'
   end
 
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  def clear_return_to
+    session[:return_to] = nil
+  end
+
   helper_method :current_user
   helper_method :current_memberships
   helper_method :authorize_member
@@ -70,4 +83,23 @@
       @project.memberships.where(role: "Owner")
     end
 
+end
+
+
+
+def set_return_point(path, overwrite = false)
+  if overwrite or session[:return_point].blank?
+    session[:return_point] = path
+  end
+end
+
+def return_point
+  session[:return_point] || projects_path
+end
+
+def require_login(return_point = request.url)
+  unless current_user
+    set_return_point(return_point)
+    redirect_to signin_path, notice: "You must be logged in to access that action"
+  end
 end

@@ -8,13 +8,7 @@ class AuthenticationController < PublicController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      if session[:request_path] == nil
-        redirect_to projects_path
-      else
-        redirect_path = session[:request_path]
-        session[:request_path] = nil
-        redirect_to redirect_path
-      end
+      redirect_back_or projects_path
     else
       @sign_in_error = "Username / password combination is invalid"
       render :new
