@@ -41,7 +41,11 @@ class UsersController < ApplicationController
   private
 
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        raise AccessDenied
+      end
     end
 
     def current_user_or_admin

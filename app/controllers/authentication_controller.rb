@@ -11,7 +11,9 @@ class AuthenticationController < PublicController
       if session[:request_path] == nil
         redirect_to projects_path
       else
-        redirect_to session[:request_path]
+        redirect_path = session[:request_path]
+        session[:request_path] = nil
+        redirect_to redirect_path
       end
     else
       @sign_in_error = "Username / password combination is invalid"
