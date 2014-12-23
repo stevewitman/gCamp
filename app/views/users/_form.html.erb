@@ -60,6 +60,16 @@
     </div>
   </div>
 
+  <% if is_admin? %>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <%= f.label "Administrator", :class => 'control-label' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.check_box :admin, :class => "form-control" %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-sm-2">
@@ -67,7 +77,6 @@
     <div class="col-sm-4">
         &nbsp;&nbsp;&nbsp;<%= f.submit nil, :class => "btn btn-default btn-primary pull-left" %>
         &nbsp;&nbsp;<%= link_to 'Cancel', users_path, class: "btn btn-default" %>
-
     </div>
   </div>
 

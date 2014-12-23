@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :current_user_or_admin, only: [:edit, :update]
-  before_action :current_user_or_admin, only: [:edit, :update]
+  before_action :current_user_or_admin, only: [:new, :create, :edit, :update]
 
   def index
     @users = User.all
@@ -46,16 +45,27 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit( :first_name,
-                                    :last_name,
-                                    :email,
-                                    :admin,
-                                    :password,
-                                    :password_confirmation,
-                                    :pivotal_tracker_token)
+      if is_admin?
+        params.require(:user).permit( :first_name,
+                                      :last_name,
+                                      :email,
+                                      :admin,
+                                      :password,
+                                      :password_confirmation,
+                                      :pivotal_tracker_token,
+                                      :admin)
+      else
+        params.require(:user).permit( :first_name,
+                                      :last_name,
+                                      :email,
+                                      :admin,
+                                      :password,
+                                      :password_confirmation,
+                                      :pivotal_tracker_token)
     end
 
     def current_user_or_admin
       raise AccessDenied unless current_user == @user || is_admin?
     end
 end
+# look up ... hash method.merge
