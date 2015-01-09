@@ -73,7 +73,4 @@ class UsersController < ApplicationController
                                       :pivotal_tracker_token)
       end
     end
-
-
 end
-# look up ... hash method.merge
