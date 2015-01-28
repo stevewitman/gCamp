@@ -186,7 +186,7 @@ feature "Tasks" do
     user = create_user(
     first_name: "TestFirst",
     last_name: "TestLast",
-    email: "testmail.com",
+    email: "test@mail.com",
     password: 'test',
     admin: false)
     project = Project.create!(name: "TestProject")

@@ -6,7 +6,7 @@ feature "projects" do
     user = create_user(
       first_name: "TestFirst",
       last_name: "TestLast",
-      email: "testmail.com",
+      email: "test@mail.com",
       password: 'test',
       admin: false)
     sign_in(user)
@@ -31,7 +31,7 @@ feature "projects" do
     user = create_user(
     first_name: "TestFirst",
     last_name: "TestLast",
-    email: "testmail.com",
+    email: "test@mail.com",
     password: 'test',
     admin: false)
     sign_in(user)
@@ -45,7 +45,7 @@ feature "projects" do
     user = create_user(
     first_name: "TestFirst",
     last_name: "TestLast",
-    email: "testmail.com",
+    email: "test@mail.com",
     password: 'test',
     admin: false)
     sign_in(user)
@@ -67,7 +67,7 @@ feature "projects" do
     user = create_user(
       first_name: "TestFirst",
       last_name: "TestLast",
-      email: "testmail.com",
+      email: "test@mail.com",
       password: 'test',
       admin: true)
     project = create_project(name: "TestProject")

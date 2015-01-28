@@ -6,7 +6,7 @@ feature "Comments" do
     user = create_user(
       first_name: "TestFirst",
       last_name: "TestLast",
-      email: "testmail.com",
+      email: "test@mail.com",
       password: 'test',
       admin: false)
     project = create_project(name: "TestProject")
@@ -48,7 +48,7 @@ feature "Comments" do
     user_1 = create_user(
       first_name: "TestFirst_1",
       last_name: "TestLast_1",
-      email: "testmail.com",
+      email: "test@mail.com",
       password: 'test',
       admin: false)
     user_2 = create_user(

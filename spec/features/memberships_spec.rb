@@ -3,22 +3,19 @@ require 'rails_helper'
 feature "Memeberships" do
   scenario "users can make new membership" do
     # create a user
-    visit '/'
-    click_on "Users"
-    click_on "Create User"
-    fill_in "First name", with: "testfirst"
-    fill_in "Last name", with: "testlast"
-    fill_in "Email", with: "test@mail.com"
-    fill_in "Password", with: "test"
-    fill_in "Password confirmation", with: "test"
-    click_on("Create User")
+    user = create_user(
+    first_name: "TestFirst",
+    last_name: "TestLast",
+    email: "test@mail.com",
+    password: 'test',
+    admin: false)
     # create a project
-    click_on "Projects"
-    click_on "Create Project"
-    expect(page).to have_content("Create project")
-    fill_in "Name", with: "TestProject"
-    click_on "Create Project"
+    project = create_project(name: "TestProject")
     # user can view show page
+    sign_in(user)
+    
+# visit project_path(project)
+# save_and_open_page
     click_on "0 Members"
     select "testfirst testlast", from: "membership_user_id"
     select "Owner", from: "membership_role"
