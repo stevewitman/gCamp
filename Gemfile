@@ -33,6 +33,12 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'faraday'
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'pry-rails'
+end
 
   gem 'faker', '~> 1.4.3'
 
